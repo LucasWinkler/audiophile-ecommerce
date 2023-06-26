@@ -9,9 +9,9 @@ import {
 
 import './styles/index.css';
 
+import Root from './Root';
 import Home from './pages/Home';
 import Headphones from './pages/Headphones';
-import Root from './Root';
 import Speakers from './pages/Speakers';
 import Earphones from './pages/Earphones';
 

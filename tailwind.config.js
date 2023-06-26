@@ -9,12 +9,21 @@ export default {
     './src/pages/**/*.tsx',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem', // 16px
+        sm: '1.5rem', // 24px
+        lg: '2rem', // 32px
+      },
+    },
     screens: {
-      xs: '375px',
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1280px',
+      xs: '23.4375rem', // 375px
+      sm: '40rem', // 640px
+      md: '48rem', // 768px
+      lg: '64rem', // 1024px
+      xl: '80rem', // 1280px
+      '2xl': '90rem', // 1440px
     },
     colors: {
       inherit: 'inherit',

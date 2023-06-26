@@ -52,7 +52,7 @@
 
 @layer components {
   .btn {
-    @apply inline-block whitespace-nowrap px-[1.9rem] py-[0.94rem] text-center text-xs uppercase tracking-[0.0625rem] transition duration-300 ease-in-out;
+    @apply inline-block cursor-pointer select-none whitespace-nowrap px-[1.9rem] py-[0.94rem] text-center text-xs uppercase tracking-[0.0625rem] transition duration-300 ease-in-out;
 
     &-primary {
       @apply bg-orange text-neutral-100;
