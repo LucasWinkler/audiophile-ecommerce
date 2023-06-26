@@ -9,7 +9,7 @@
 
   html,
   body {
-    @apply max-w-[100vw] overflow-x-hidden;
+    @apply h-full max-w-[100vw] overflow-x-hidden;
   }
 
   h1,
@@ -52,6 +52,38 @@
 
 @layer components {
   .btn {
-    @apply inline-block rounded px-4 py-2 font-bold;
+    @apply inline-block whitespace-nowrap px-[1.9rem] py-[0.94rem] text-center text-xs uppercase tracking-[0.0625rem] transition duration-300 ease-in-out;
+
+    &-primary {
+      @apply bg-orange text-neutral-100;
+
+      &:hover {
+        @apply bg-orange-light;
+      }
+    }
+
+    &-secondary {
+      @apply border border-neutral-900 bg-transparent px-[calc(1.9rem-1px)] py-[calc(0.94rem-1px)]  text-neutral-900;
+
+      &:hover {
+        @apply bg-neutral-900 text-neutral-100;
+      }
+    }
+
+    &-secondary-invert {
+      @apply border border-transparent bg-neutral-900 px-[calc(1.9rem-1px)] py-[calc(0.94rem-1px)] text-neutral-100;
+
+      &:hover {
+        @apply border-neutral-900 bg-transparent text-neutral-900;
+      }
+    }
+
+    &-simple {
+      @apply inline-flex items-center justify-center gap-[0.83rem] text-neutral-900/50;
+
+      &:hover {
+        @apply text-orange;
+      }
+    }
   }
 }

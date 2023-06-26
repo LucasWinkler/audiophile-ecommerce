@@ -17,6 +17,7 @@ export default {
       xl: '1280px',
     },
     colors: {
+      inherit: 'inherit',
       transparent: 'transparent',
       current: 'currentColor',
       neutral: {
