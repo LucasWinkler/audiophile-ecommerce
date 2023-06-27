@@ -9,8 +9,16 @@ import AudiophileLogo from '../../assets/shared/desktop/logo.svg';
 import CartIcon from '../../assets/shared/desktop/icon-cart.svg';
 import HamburgerIcon from '../../assets/shared/tablet/icon-hamburger.svg';
 
+import navigationLinks from '../../data/navigationLinks.json';
+
 const fullConfig = resolveConfig(tailwindConfig);
 const screens = fullConfig?.theme?.screens as { [key: string]: string };
+
+type NavigationLink = {
+  name: string;
+  href: string;
+  className: string;
+};
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -48,21 +56,37 @@ export default function Navbar() {
     };
   }, []);
 
+  function handleToggleMobileMenu() {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  }
+
+  function handleCloseMobileMenu() {
+    setIsMobileMenuOpen(false);
+  }
+
+  function handleCartButtonClick() {
+    handleCloseMobileMenu();
+    // TODO: Open cart modal
+  }
+
   return (
     <header className='z-10 bg-neutral-900'>
       <div className='container flex h-navigation-height items-center justify-between'>
         <div className='flex w-full items-center justify-between gap-2'>
           <button
             className='flex-grow basis-0 self-center lg:hidden'
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            onClick={handleToggleMobileMenu}>
             <span className='sr-only'>
               {isMobileMenuOpen ? 'Close' : 'Open'} navigation menu
             </span>
             <img src={HamburgerIcon} alt='Hamburger Icon' />
           </button>
-          <div className='lg:flex-grow lg:basis-0'>
+          <Link
+            to='/'
+            onClick={handleCloseMobileMenu}
+            className='lg:flex-grow lg:basis-0'>
             <img src={AudiophileLogo} alt='Audiophile Logo' />
-          </div>
+          </Link>
           <nav
             className={clsx(
               'lg:flex',
@@ -71,21 +95,28 @@ export default function Navbar() {
                 : 'hidden'
             )}>
             <ul className='flex gap-3 text-neutral-100'>
-              <li>
-                <Link to='/'>Home</Link>
-              </li>
-              <li>
-                <Link to='/headphones'>Headphones</Link>
-              </li>
-              <li>
-                <Link to='/speakers'>Speakers</Link>
-              </li>
-              <li>
-                <Link to='/earphones'>Earphones</Link>
-              </li>
+              {navigationLinks.map(
+                ({ name, href, className }: NavigationLink) => (
+                  <li
+                    className={clsx(
+                      className,
+                      'text-neutral-900 lg:text-neutral-100'
+                    )}
+                    key={name}>
+                    <Link
+                      className='whitespace-nowrap px-2 py-2 transition-colors duration-300 '
+                      onClick={handleCloseMobileMenu}
+                      to={href}>
+                      {name}
+                    </Link>
+                  </li>
+                )
+              )}
             </ul>
           </nav>
-          <button className='flex-grow basis-0 self-center'>
+          <button
+            onClick={handleCartButtonClick}
+            className='flex-grow basis-0 self-center'>
             <span className='sr-only'>Open navigation menu</span>
             <img className='ml-auto' src={CartIcon} alt='Cart Icon' />
           </button>

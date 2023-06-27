@@ -8,6 +8,7 @@ export default {
     './src/components/**/*.tsx',
     './src/pages/**/*.tsx',
   ],
+  safelist: ['lg:list-item'],
   theme: {
     container: {
       center: true,

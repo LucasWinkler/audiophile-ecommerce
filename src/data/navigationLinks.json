@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Home",
+    "href": "/",
+    "className": "hidden lg:list-item"
+  },
+  {
+    "name": "Headphones",
+    "href": "/headphones",
+    "className": ""
+  },
+  {
+    "name": "Speakers",
+    "href": "/speakers",
+    "className": ""
+  },
+  {
+    "name": "Earphones",
+    "href": "/earphones",
+    "className": ""
+  }
+]
