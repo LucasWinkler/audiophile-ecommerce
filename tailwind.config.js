@@ -119,6 +119,9 @@ export default {
       fontFamily: {
         sans: ['Manrope', ...defaultTheme.fontFamily.sans],
       },
+      spacing: {
+        'navigation-height': 'var(--navigation-height)',
+      },
     },
   },
   plugins: [],
