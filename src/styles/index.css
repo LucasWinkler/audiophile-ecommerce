@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --navigation-height: 5.625rem;
+  }
+
   html {
     @apply scroll-smooth antialiased;
   }

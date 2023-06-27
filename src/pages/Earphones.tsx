@@ -1,3 +1,9 @@
 export default function Earphones() {
-  return <h1>Earphones</h1>;
+  return (
+    <>
+      <div className='container'>
+        <h1>Earphones</h1>
+      </div>
+    </>
+  );
 }

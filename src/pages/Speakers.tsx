@@ -1,3 +1,9 @@
 export default function Speakers() {
-  return <h1>Speakers</h1>;
+  return (
+    <>
+      <div className='container'>
+        <h1>Speakers</h1>
+      </div>
+    </>
+  );
 }
