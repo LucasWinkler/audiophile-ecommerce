@@ -83,11 +83,11 @@
       }
     }
 
-    &-secondary-invert {
-      @apply border border-transparent bg-neutral-900 px-[calc(1.9rem-1px)] py-[calc(0.94rem-1px)] text-neutral-100;
+    &-secondary-alt {
+      @apply bg-neutral-900 text-neutral-100;
 
       &:hover {
-        @apply border-neutral-900 bg-transparent text-neutral-900;
+        @apply bg-neutral-600;
       }
     }
 
