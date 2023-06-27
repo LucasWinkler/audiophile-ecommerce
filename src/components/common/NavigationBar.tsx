@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 
@@ -8,9 +8,11 @@ import tailwindConfig from '../../../tailwind.config.js';
 import AudiophileLogo from '../../assets/shared/desktop/logo.svg';
 import CartIcon from '../../assets/shared/desktop/icon-cart.svg';
 import HamburgerIcon from '../../assets/shared/tablet/icon-hamburger.svg';
-
 import navigationLinks from '../../data/navigationLinks.json';
-import Navlink from './NavigationLink.js';
+
+import NavigationLink from './NavigationLink.js';
+import ArrowRightIcon from './ArrowRightIcon.js';
+import ConditionalWrapper from './ConditionalWrapper.tsx';
 
 const fullConfig = resolveConfig(tailwindConfig);
 const screens = fullConfig?.theme?.screens as { [key: string]: string };
@@ -18,7 +20,8 @@ const screens = fullConfig?.theme?.screens as { [key: string]: string };
 type NavigationLink = {
   name: string;
   href: string;
-  className: string;
+  className?: string;
+  thumbnail?: string;
 };
 
 export default function NavigationBar() {
@@ -45,7 +48,7 @@ export default function NavigationBar() {
     const handleViewportChange = () => {
       const windowWidthAsRem = window.innerWidth / 16;
 
-      if (windowWidthAsRem >= parseInt(screens.lg)) {
+      if (windowWidthAsRem >= parseInt(screens.xl)) {
         setIsMobileMenuOpen(false);
       }
     };
@@ -56,6 +59,20 @@ export default function NavigationBar() {
       window.removeEventListener('resize', handleViewportChange);
     };
   }, []);
+
+  useEffect(() => {
+    const handleEscapePressed = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscapePressed);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscapePressed);
+    };
+  }, [setIsMobileMenuOpen]);
 
   function handleToggleMobileMenu() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -70,8 +87,12 @@ export default function NavigationBar() {
     // TODO: Open cart modal
   }
 
+  function handleClickedOutsideMobileMenu() {
+    setIsMobileMenuOpen(false);
+  }
+
   return (
-    <header className='bg-neutral-900'>
+    <header className='z-10 bg-neutral-800'>
       <div className='container'>
         <div className='flex h-navigation-height items-center justify-between'>
           <div className='flex w-full items-center justify-between gap-2 '>
@@ -84,36 +105,64 @@ export default function NavigationBar() {
               </button>
             </div>
             <div className='xl:flex xl:flex-grow xl:basis-0'>
-              <Link to='/' onClick={handleCloseMobileMenu} className=''>
+              <Link to='/' onClick={handleCloseMobileMenu}>
                 <img src={AudiophileLogo} alt='Audiophile Logo' />
               </Link>
             </div>
             <nav
+              onClick={handleClickedOutsideMobileMenu}
               className={clsx(
                 'xl:flex',
                 isMobileMenuOpen
-                  ? 'absolute left-0 right-0 top-navigation-height z-10 block h-[calc(100%-var(--navigation-height))] overflow-y-auto'
+                  ? 'absolute left-0 right-0 top-navigation-height z-10 block overflow-y-auto  overflow-x-hidden lg:max-h-[1/3]'
                   : 'hidden'
               )}>
-              <ul className='flex gap-3 text-neutral-100'>
-                {navigationLinks.map(
-                  ({ name, href, className }: NavigationLink) => (
-                    <li
-                      className={clsx(
-                        className,
-                        'text-neutral-900 xl:text-neutral-100'
-                      )}
-                      key={name}>
-                      <Navlink
-                        className=''
-                        onClick={handleCloseMobileMenu}
-                        to={href}>
-                        {name}
-                      </Navlink>
-                    </li>
-                  )
-                )}
-              </ul>
+              <div className='fixed inset-0 top-navigation-height h-full w-full bg-neutral-900 opacity-50 xl:hidden'></div>
+              <div className='relative rounded-b-lg bg-neutral-100 xl:rounded-none xl:bg-transparent'>
+                <ConditionalWrapper
+                  condition={isMobileMenuOpen}
+                  wrapper={(children: ReactNode) => (
+                    <div className='container'>{children}</div>
+                  )}>
+                  <ul
+                    onClick={e => e.stopPropagation()}
+                    className={clsx(
+                      '',
+                      isMobileMenuOpen
+                        ? 'relative flex flex-col lg:flex-row'
+                        : 'flex gap-3'
+                    )}>
+                    {navigationLinks.map(
+                      ({ name, href, className }: NavigationLink) => (
+                        <li className={clsx('', className)} key={name}>
+                          {isMobileMenuOpen ? (
+                            <>
+                              <NavigationLink
+                                className='btn btn-simple'
+                                onClick={handleCloseMobileMenu}
+                                to={href}
+                                variant='mobile'>
+                                Shop
+                                <ArrowRightIcon />
+                              </NavigationLink>
+                            </>
+                          ) : (
+                            <>
+                              <NavigationLink
+                                className='text-neutral-100'
+                                onClick={handleCloseMobileMenu}
+                                to={href}
+                                variant='desktop'>
+                                {name}
+                              </NavigationLink>
+                            </>
+                          )}
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </ConditionalWrapper>
+              </div>
             </nav>
             <div className='flex flex-grow basis-0'>
               <button onClick={handleCartButtonClick} className='ml-auto'>

@@ -8,7 +8,7 @@ export default {
     './src/components/**/*.tsx',
     './src/pages/**/*.tsx',
   ],
-  safelist: ['lg:list-item'],
+  safelist: ['xl:list-item'],
   theme: {
     screens: {
       xs: '23.4375rem', // 375px

@@ -97,6 +97,10 @@
       &:hover {
         @apply text-orange;
       }
+
+      & > img {
+        @apply h-3 w-auto;
+      }
     }
   }
 }

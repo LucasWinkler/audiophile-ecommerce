@@ -2,21 +2,24 @@
   {
     "name": "Home",
     "href": "/",
-    "className": "hidden lg:list-item"
+    "className": "hidden xl:list-item"
   },
   {
     "name": "Headphones",
     "href": "/headphones",
-    "className": ""
+    "className": "",
+    "thumbnail": "/images/shared/desktop/image-category-thumbnail-headphones.png"
   },
   {
     "name": "Speakers",
     "href": "/speakers",
-    "className": ""
+    "className": "",
+    "thumbnail": "/images/shared/desktop/image-category-thumbnail-speakers.png"
   },
   {
     "name": "Earphones",
     "href": "/earphones",
-    "className": ""
+    "className": "",
+    "thumbnail": "/images/shared/desktop/image-category-thumbnail-earphones.png"
   }
 ]
