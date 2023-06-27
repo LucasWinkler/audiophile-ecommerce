@@ -71,57 +71,59 @@ export default function NavigationBar() {
   }
 
   return (
-    <header className='z-10 bg-neutral-900'>
-      <div className='container flex h-navigation-height items-center justify-between'>
-        <div className='flex w-full items-center justify-between gap-2'>
-          <button
-            className='flex-grow basis-0 self-center lg:hidden'
-            onClick={handleToggleMobileMenu}>
-            <span className='sr-only'>
-              {isMobileMenuOpen ? 'Close' : 'Open'} navigation menu
-            </span>
-            <img src={HamburgerIcon} alt='Hamburger Icon' />
-          </button>
-          <Link
-            to='/'
-            onClick={handleCloseMobileMenu}
-            className='lg:flex-grow lg:basis-0'>
-            <img src={AudiophileLogo} alt='Audiophile Logo' />
-          </Link>
-          <nav
-            className={clsx(
-              'lg:flex',
-              isMobileMenuOpen
-                ? 'absolute left-0 right-0 top-navigation-height z-10 block h-[calc(100%-var(--navigation-height))] overflow-y-auto'
-                : 'hidden'
-            )}>
-            <ul className='flex gap-3 text-neutral-100'>
-              {navigationLinks.map(
-                ({ name, href, className }: NavigationLink) => (
-                  <li
-                    className={clsx(
-                      className,
-                      'text-neutral-900 lg:text-neutral-100'
-                    )}
-                    key={name}>
-                    <Navlink
-                      className=''
-                      onClick={handleCloseMobileMenu}
-                      to={href}>
-                      {name}
-                    </Navlink>
-                  </li>
-                )
-              )}
-            </ul>
-          </nav>
-          <button
-            onClick={handleCartButtonClick}
-            className='flex-grow basis-0 self-center'>
-            <span className='sr-only'>Open navigation menu</span>
-            <img className='ml-auto' src={CartIcon} alt='Cart Icon' />
-          </button>
+    <header className='bg-neutral-900'>
+      <div className='container'>
+        <div className='flex h-navigation-height items-center justify-between'>
+          <div className='flex w-full items-center justify-between gap-2 '>
+            <div className='flex-grow basis-0 xl:hidden'>
+              <button onClick={handleToggleMobileMenu}>
+                <span className='sr-only'>
+                  {isMobileMenuOpen ? 'Close' : 'Open'} navigation menu
+                </span>
+                <img src={HamburgerIcon} alt='Hamburger Icon' />
+              </button>
+            </div>
+            <div className='xl:flex xl:flex-grow xl:basis-0'>
+              <Link to='/' onClick={handleCloseMobileMenu} className=''>
+                <img src={AudiophileLogo} alt='Audiophile Logo' />
+              </Link>
+            </div>
+            <nav
+              className={clsx(
+                'xl:flex',
+                isMobileMenuOpen
+                  ? 'absolute left-0 right-0 top-navigation-height z-10 block h-[calc(100%-var(--navigation-height))] overflow-y-auto'
+                  : 'hidden'
+              )}>
+              <ul className='flex gap-3 text-neutral-100'>
+                {navigationLinks.map(
+                  ({ name, href, className }: NavigationLink) => (
+                    <li
+                      className={clsx(
+                        className,
+                        'text-neutral-900 xl:text-neutral-100'
+                      )}
+                      key={name}>
+                      <Navlink
+                        className=''
+                        onClick={handleCloseMobileMenu}
+                        to={href}>
+                        {name}
+                      </Navlink>
+                    </li>
+                  )
+                )}
+              </ul>
+            </nav>
+            <div className='flex flex-grow basis-0'>
+              <button onClick={handleCartButtonClick} className='ml-auto'>
+                <span className='sr-only'>Open navigation menu</span>
+                <img className='' src={CartIcon} alt='Cart Icon' />
+              </button>
+            </div>
+          </div>
         </div>
+        <span className='full-bleed sm:no-bleed block h-[0.0625rem] bg-neutral-100/20'></span>
       </div>
     </header>
   );

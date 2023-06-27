@@ -2,7 +2,7 @@ import ArrowRightIcon from '../components/common/ArrowRightIcon';
 
 export default function Home() {
   return (
-    <>
+    <div className=''>
       <div className='container'>
         <h1>Home Page</h1>
         <div className='flex items-center gap-2'>
@@ -15,6 +15,6 @@ export default function Home() {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -10,21 +10,14 @@ export default {
   ],
   safelist: ['lg:list-item'],
   theme: {
-    container: {
-      center: true,
-      padding: {
-        DEFAULT: '1rem', // 16px
-        sm: '1.5rem', // 24px
-        lg: '2rem', // 32px
-      },
-    },
     screens: {
       xs: '23.4375rem', // 375px
-      sm: '40rem', // 640px
-      md: '48rem', // 768px
-      lg: '64rem', // 1024px
-      xl: '80rem', // 1280px
-      '2xl': '90rem', // 1440px
+      sm: '30rem', // 480px
+      md: '40rem', // 640px
+      lg: '48rem', // 768px
+      xl: '64rem', // 1024px
+      '2xl': '80rem', // 1280px
+      '3xl': '90rem', // 1440px
     },
     colors: {
       inherit: 'inherit',
@@ -124,6 +117,9 @@ export default {
         'navigation-height': 'var(--navigation-height)',
       },
     },
+  },
+  corePlugins: {
+    container: false,
   },
   plugins: [],
 };
