@@ -10,6 +10,7 @@ import CartIcon from '../../assets/shared/desktop/icon-cart.svg';
 import HamburgerIcon from '../../assets/shared/tablet/icon-hamburger.svg';
 
 import navigationLinks from '../../data/navigationLinks.json';
+import Navlink from './NavigationLink.js';
 
 const fullConfig = resolveConfig(tailwindConfig);
 const screens = fullConfig?.theme?.screens as { [key: string]: string };
@@ -20,7 +21,7 @@ type NavigationLink = {
   className: string;
 };
 
-export default function Navbar() {
+export default function NavigationBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Prevent scrolling when mobile menu is open and toggle scrollbar to prevent page from shifting
@@ -103,12 +104,12 @@ export default function Navbar() {
                       'text-neutral-900 lg:text-neutral-100'
                     )}
                     key={name}>
-                    <Link
-                      className='whitespace-nowrap px-2 py-2 transition-colors duration-300 '
+                    <Navlink
+                      className=''
                       onClick={handleCloseMobileMenu}
                       to={href}>
                       {name}
-                    </Link>
+                    </Navlink>
                   </li>
                 )
               )}

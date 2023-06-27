@@ -1,4 +1,4 @@
-import ArrowRightIcon from '../assets/shared/desktop/icon-arrow-right.svg';
+import ArrowRightIcon from '../components/common/ArrowRightIcon';
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
           <button className='btn btn-secondary-invert'>Click me</button>
           <button className='btn btn-simple'>
             Click me
-            <img src={ArrowRightIcon} alt='' />
+            <ArrowRightIcon />
           </button>
         </div>
       </div>
