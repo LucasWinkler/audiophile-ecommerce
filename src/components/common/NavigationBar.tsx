@@ -92,7 +92,7 @@ export default function NavigationBar() {
   }
 
   return (
-    <header className='z-10 bg-neutral-800'>
+    <header className='relative z-10 bg-neutral-800'>
       <div className='container'>
         <div className='flex h-navigation-height items-center justify-between'>
           <div className='flex w-full items-center justify-between gap-2 '>
@@ -114,11 +114,11 @@ export default function NavigationBar() {
               className={clsx(
                 'xl:flex',
                 isMobileMenuOpen
-                  ? 'absolute left-0 right-0 top-navigation-height z-10 block h-full overflow-x-hidden lg:max-h-[1/3]'
+                  ? 'absolute left-0 right-0 top-navigation-height z-10 block overflow-y-auto overflow-x-hidden lg:max-h-[1/3]'
                   : 'hidden'
               )}>
               <div className='fixed inset-0 top-navigation-height h-full w-full bg-neutral-900 opacity-50 xl:hidden'></div>
-              <div className='relative rounded-b-lg bg-neutral-100 py-[2.1875rem] xl:rounded-none xl:bg-transparent xl:py-0'>
+              <div className='relative overflow-y-auto rounded-b-lg bg-neutral-100 py-[2.1875rem] xl:rounded-none xl:bg-transparent xl:py-0'>
                 <ConditionalWrapper
                   condition={isMobileMenuOpen}
                   wrapper={(children: ReactNode) => (
