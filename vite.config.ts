@@ -27,6 +27,12 @@ export default defineConfig({
               },
             },
           },
+          'removeDimensions',
+          'removeStyleElement',
+          'removeScriptElement',
+          'removeComments',
+          'removeMetadata',
+          'cleanupAttrs',
           'sortAttrs',
           {
             name: 'addAttributesToSVGElement',
