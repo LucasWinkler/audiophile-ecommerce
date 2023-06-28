@@ -8,18 +8,18 @@
     "name": "Headphones",
     "href": "/headphones",
     "className": "",
-    "thumbnail": "/images/shared/desktop/image-category-thumbnail-headphones.png"
+    "thumbnail": "./images/shared/image-category-thumbnail-headphones.png"
   },
   {
     "name": "Speakers",
     "href": "/speakers",
     "className": "",
-    "thumbnail": "/images/shared/desktop/image-category-thumbnail-speakers.png"
+    "thumbnail": "./images/shared/image-category-thumbnail-speakers.png"
   },
   {
     "name": "Earphones",
     "href": "/earphones",
     "className": "",
-    "thumbnail": "/images/shared/desktop/image-category-thumbnail-earphones.png"
+    "thumbnail": "./images/shared/image-category-thumbnail-earphones.png"
   }
 ]

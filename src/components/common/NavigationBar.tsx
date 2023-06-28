@@ -114,11 +114,11 @@ export default function NavigationBar() {
               className={clsx(
                 'xl:flex',
                 isMobileMenuOpen
-                  ? 'absolute left-0 right-0 top-navigation-height z-10 block overflow-y-auto  overflow-x-hidden lg:max-h-[1/3]'
+                  ? 'absolute left-0 right-0 top-navigation-height z-10 block h-full overflow-x-hidden lg:max-h-[1/3]'
                   : 'hidden'
               )}>
               <div className='fixed inset-0 top-navigation-height h-full w-full bg-neutral-900 opacity-50 xl:hidden'></div>
-              <div className='relative rounded-b-lg bg-neutral-100 xl:rounded-none xl:bg-transparent'>
+              <div className='relative rounded-b-lg bg-neutral-100 py-[2.1875rem] xl:rounded-none xl:bg-transparent xl:py-0'>
                 <ConditionalWrapper
                   condition={isMobileMenuOpen}
                   wrapper={(children: ReactNode) => (
@@ -127,32 +127,49 @@ export default function NavigationBar() {
                   <ul
                     onClick={e => e.stopPropagation()}
                     className={clsx(
-                      '',
                       isMobileMenuOpen
-                        ? 'relative flex flex-col lg:flex-row'
+                        ? 'relative flex flex-col gap-[4.25rem] pt-6 lg:flex-row'
                         : 'flex gap-3'
                     )}>
                     {navigationLinks.map(
-                      ({ name, href, className }: NavigationLink) => (
-                        <li className={clsx('', className)} key={name}>
+                      ({
+                        name,
+                        href,
+                        className,
+                        thumbnail,
+                      }: NavigationLink) => (
+                        <li
+                          className={clsx(
+                            isMobileMenuOpen
+                              ? 'relative flex flex-col items-center justify-center rounded-lg bg-neutral-400 p-4'
+                              : '',
+                            className
+                          )}
+                          key={name}>
                           {isMobileMenuOpen ? (
-                            <>
-                              <NavigationLink
-                                className='btn btn-simple'
+                            <div className='flex flex-col items-center justify-center'>
+                              <img
+                                className='absolute top-[-20%] h-[8rem] w-auto'
+                                src={thumbnail}
+                                alt={`${name} Thumbnail`}
+                              />
+                              <p className='pt-[4.5rem] text-center text-base font-bold uppercase tracking-[0.06694rem]'>
+                                {name}
+                              </p>
+                              <Link
+                                className='btn btn-simple before:absolute before:inset-0 before:block'
                                 onClick={handleCloseMobileMenu}
-                                to={href}
-                                variant='mobile'>
+                                to={href}>
                                 Shop
                                 <ArrowRightIcon />
-                              </NavigationLink>
-                            </>
+                              </Link>
+                            </div>
                           ) : (
                             <>
                               <NavigationLink
                                 className='text-neutral-100'
                                 onClick={handleCloseMobileMenu}
-                                to={href}
-                                variant='desktop'>
+                                to={href}>
                                 {name}
                               </NavigationLink>
                             </>

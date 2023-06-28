@@ -6,12 +6,8 @@ type NavigationLinkProps = {
   className?: string;
   children: React.ReactNode;
   onClick?: () => void;
-  variant: 'mobile' | 'desktop';
 };
 
-const mobileClassNames = '';
-const desktopClassNames =
-  'whitespace-nowrap px-2 py-2 text-xs uppercase tracking-[0.125rem] transition-colors duration-300 hover:text-orange';
 const activeLinkClassNames = 'text-orange';
 
 export default function NavigationLink({
@@ -19,16 +15,14 @@ export default function NavigationLink({
   className,
   children,
   onClick,
-  variant,
 }: NavigationLinkProps) {
   return (
     <NavLink
       to={to}
       className={({ isActive }) =>
         clsx(
-          '',
-          variant === 'mobile' ? mobileClassNames : desktopClassNames,
-          isActive && variant === 'desktop' && activeLinkClassNames,
+          'whitespace-nowrap px-2 py-2 text-xs uppercase tracking-[0.125rem] transition-colors duration-300 hover:text-orange',
+          isActive && activeLinkClassNames,
           className
         )
       }
