@@ -95,7 +95,7 @@ export default function NavigationBar() {
     <header className='relative z-10 bg-neutral-800'>
       <div className='container'>
         <div className='flex h-navigation-height items-center justify-between'>
-          <div className='flex w-full items-center justify-between gap-2 '>
+          <div className='flex w-full items-center justify-between gap-2'>
             <div className='flex-grow basis-0 xl:hidden'>
               <button onClick={handleToggleMobileMenu}>
                 <span className='sr-only'>
@@ -133,7 +133,7 @@ export default function NavigationBar() {
                   <ul
                     className={clsx(
                       isMobileMenuOpen
-                        ? 'relative mt-10 flex flex-col items-center justify-center gap-[3.75rem] lg:flex-row lg:gap-[1rem]'
+                        ? 'relative mt-9 flex flex-col items-center justify-center gap-[3.75rem] lg:flex-row lg:gap-[1rem]'
                         : 'flex gap-3'
                     )}>
                     {navigationLinks.map(
@@ -154,6 +154,7 @@ export default function NavigationBar() {
                           {isMobileMenuOpen ? (
                             <div className='flex w-full flex-col items-center justify-center'>
                               <img
+                                loading='lazy'
                                 className='absolute top-[-26%] h-[8rem] w-auto'
                                 src={thumbnail}
                                 alt={`${name} Thumbnail`}

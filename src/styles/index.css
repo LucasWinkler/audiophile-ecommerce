@@ -56,18 +56,13 @@
 
 @layer components {
   .container {
-    --padding: 1rem;
-    --max-width: 90rem;
+    @apply [--max-width:90rem] [--padding:1rem] md:[--padding:1.5rem] lg:[--padding:2rem] 2xl:[--padding:3rem];
 
     width: min(100% - calc(var(--padding) * 2), var(--max-width));
     margin-inline: auto;
-
-    @apply md:[--padding:1.5rem] lg:[--padding:2rem] 2xl:[--padding:3rem];
   }
   .btn {
-    --padding-x: 1.9rem;
-    --padding-y: 0.94rem;
-
+    @apply [--padding-x:1.9rem] [--padding-y:0.94rem];
     @apply inline-block cursor-pointer select-none whitespace-nowrap px-[--padding-x] py-[--padding-y] text-center text-xs uppercase tracking-[0.0625rem] transition duration-300 ease-in-out;
 
     &-primary {
@@ -95,9 +90,7 @@
     }
 
     &-simple {
-      --padding-x: 0.1rem;
-      --padding-y: 0.1rem;
-
+      @apply [--padding-x:0.1rem] [--padding-y:0.1rem];
       @apply inline-flex items-center justify-center gap-[0.83rem] text-neutral-900/50;
 
       &:hover {
@@ -113,20 +106,10 @@
 
 @layer utilities {
   .full-bleed {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    @apply relative left-1/2 right-1/2 -mx-[50vw] w-screen;
   }
 
   .no-bleed {
-    width: auto;
-    position: unset;
-    left: auto;
-    right: auto;
-    margin-left: auto;
-    margin-right: auto;
+    @apply left-auto right-auto mx-auto w-auto [position:unset];
   }
 }
