@@ -5,5 +5,13 @@ type ArrowRightIconProps = {
 };
 
 export default function ArrowRightIcon({ className }: ArrowRightIconProps) {
-  return <img className={className} src={IconArrowRight} alt='' />;
+  return (
+    <img
+      src={IconArrowRight}
+      width='8'
+      height='12'
+      alt=''
+      className={className}
+    />
+  );
 }

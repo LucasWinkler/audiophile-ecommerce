@@ -92,21 +92,31 @@ export default function NavigationBar() {
   }
 
   return (
-    <header className='relative z-10 bg-neutral-800'>
+    <header className='fixed left-0 right-0 top-0 z-10'>
       <div className='container'>
         <div className='flex h-navigation-height items-center justify-between'>
           <div className='flex w-full items-center justify-between gap-2'>
-            <div className='flex-grow basis-0 xl:hidden'>
+            <div className='flex flex-grow basis-0 items-center justify-start xl:hidden '>
               <button onClick={handleToggleMobileMenu}>
                 <span className='sr-only'>
                   {isMobileMenuOpen ? 'Close' : 'Open'} navigation menu
                 </span>
-                <img src={HamburgerIcon} alt='Hamburger Icon' />
+                <img
+                  src={HamburgerIcon}
+                  width='16'
+                  height='15'
+                  alt='Hamburger Icon'
+                />
               </button>
             </div>
             <div className='xl:flex xl:flex-grow xl:basis-0'>
               <Link to='/' onClick={handleCloseMobileMenu}>
-                <img src={AudiophileLogo} alt='Audiophile Logo' />
+                <img
+                  src={AudiophileLogo}
+                  width='143'
+                  height='25'
+                  alt='Audiophile Logo'
+                />
               </Link>
             </div>
             <nav
@@ -114,7 +124,7 @@ export default function NavigationBar() {
               className={clsx(
                 'xl:flex',
                 isMobileMenuOpen
-                  ? 'absolute left-0 right-0 top-navigation-height z-10 block overflow-y-auto overflow-x-hidden lg:max-h-[1/3]'
+                  ? 'absolute left-0 right-0 top-[calc(var(--navigation-height)+1px)] z-10 block overflow-y-auto overflow-x-hidden lg:max-h-[1/3]'
                   : 'hidden'
               )}>
               <div className='fixed inset-0 top-navigation-height h-full w-full bg-neutral-900 opacity-50 xl:hidden'></div>
@@ -145,9 +155,8 @@ export default function NavigationBar() {
                       }: NavigationLink) => (
                         <li
                           className={clsx(
-                            isMobileMenuOpen
-                              ? 'relative flex w-full flex-col items-center justify-center rounded-lg bg-neutral-400 p-4'
-                              : '',
+                            isMobileMenuOpen &&
+                              'relative flex w-full flex-col items-center justify-center rounded-lg bg-neutral-400 p-4',
                             className
                           )}
                           key={name}>
@@ -186,15 +195,15 @@ export default function NavigationBar() {
                 </ConditionalWrapper>
               </div>
             </nav>
-            <div className='flex flex-grow basis-0'>
-              <button onClick={handleCartButtonClick} className='ml-auto'>
+            <div className='flex flex-grow basis-0 items-center justify-end'>
+              <button onClick={handleCartButtonClick}>
                 <span className='sr-only'>Open navigation menu</span>
-                <img className='' src={CartIcon} alt='Cart Icon' />
+                <img src={CartIcon} width='23' height='20' alt='Cart Icon' />
               </button>
             </div>
           </div>
         </div>
-        <span className='full-bleed sm:no-bleed block h-[0.0625rem] bg-neutral-100/20'></span>
+        <span className='full-bleed sm:no-bleed fixed z-10 block h-[0.0625rem] bg-neutral-100/20'></span>
       </div>
     </header>
   );
