@@ -154,7 +154,6 @@ export default function NavigationBar() {
                           {isMobileMenuOpen ? (
                             <div className='flex w-full flex-col items-center justify-center'>
                               <img
-                                loading='lazy'
                                 className='absolute top-[-26%] h-[8rem] w-auto'
                                 src={thumbnail}
                                 alt={`${name} Thumbnail`}
