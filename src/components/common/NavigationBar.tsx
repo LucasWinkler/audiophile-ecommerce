@@ -119,6 +119,7 @@ export default function NavigationBar() {
               )}>
               <div className='fixed inset-0 top-navigation-height h-full w-full bg-neutral-900 opacity-50 xl:hidden'></div>
               <div
+                onClick={e => e.stopPropagation()}
                 className={clsx(
                   isMobileMenuOpen
                     ? 'relative overflow-y-auto rounded-b-lg bg-neutral-100 py-[2.1875rem]'
@@ -130,10 +131,9 @@ export default function NavigationBar() {
                     <div className='container'>{children}</div>
                   )}>
                   <ul
-                    onClick={e => e.stopPropagation()}
                     className={clsx(
                       isMobileMenuOpen
-                        ? 'relative flex flex-col items-center justify-center gap-[4.25rem] pt-6 lg:flex-row lg:gap-[1rem]'
+                        ? 'relative mt-10 flex flex-col items-center justify-center gap-[3.75rem] lg:flex-row lg:gap-[1rem]'
                         : 'flex gap-3'
                     )}>
                     {navigationLinks.map(
@@ -154,7 +154,7 @@ export default function NavigationBar() {
                           {isMobileMenuOpen ? (
                             <div className='flex w-full flex-col items-center justify-center'>
                               <img
-                                className='absolute top-[-20%] h-[8rem] w-auto'
+                                className='absolute top-[-26%] h-[8rem] w-auto'
                                 src={thumbnail}
                                 alt={`${name} Thumbnail`}
                               />
@@ -162,7 +162,7 @@ export default function NavigationBar() {
                                 {name}
                               </p>
                               <Link
-                                className='btn btn-simple before:absolute before:inset-0 before:block'
+                                className='btn btn-simple pt-2 before:absolute before:inset-0 before:block'
                                 onClick={handleCloseMobileMenu}
                                 to={href}>
                                 Shop
