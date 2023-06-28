@@ -15,23 +15,24 @@ export default defineConfig({
       svg: {
         multipass: true,
         plugins: [
-          'removeDimensions',
-          'removeStyleElement',
-          'removeScriptElement',
-          'removeComments',
           {
-            name: 'cleanupIDs',
-            active: true,
+            name: 'preset-default',
             params: {
-              minify: true,
-              remove: false,
+              overrides: {
+                cleanupNumericValues: false,
+                removeViewBox: false, // https://github.com/svg/svgo/issues/1128
+                cleanupIds: {
+                  minify: true,
+                },
+              },
             },
           },
-          'cleanupAttrs',
-          'removeMetadata',
+          'sortAttrs',
           {
-            name: 'removeViewBox',
-            active: false,
+            name: 'addAttributesToSVGElement',
+            params: {
+              attributes: [{ xmlns: 'http://www.w3.org/2000/svg' }],
+            },
           },
         ],
       },
