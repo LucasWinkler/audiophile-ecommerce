@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 import { NavigationLink as NavigationLinkType } from '@/types';
 import ArrowRightIcon from '../ArrowRightIcon';
+import { useEffect } from 'react';
 
 type MobileNavigationProps = {
   navigationLinks: NavigationLinkType[];
@@ -14,15 +15,29 @@ export default function MobileNavigation({
   isMobileMenuOpen,
   handleCloseMobileMenu,
 }: MobileNavigationProps) {
+  useEffect(() => {
+    const handleResize = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh / 16}rem`);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return isMobileMenuOpen ? (
     <nav
-      className='absolute left-0 right-0 top-[calc(var(--navigation-height)+1px)] z-10 block h-[calc(100vh-var(--navigation-height))] overflow-y-auto overflow-x-hidden lg:max-h-[1/3]'
+      className='absolute left-0 right-0 top-[calc(var(--navigation-height)+1px)] z-10 block overflow-y-auto overflow-x-hidden '
       onClick={handleCloseMobileMenu}>
       <div className='fixed inset-0 top-navigation-height h-full w-full bg-neutral-900 opacity-50 xl:hidden'></div>
       <div
         onClick={event => event.stopPropagation()}
         className={
-          'relative overflow-y-auto rounded-b-lg bg-neutral-100 py-[2.1875rem]'
+          'relative max-h-[calc(var(--vh,1vh)*100-var(--navigation-height))] overflow-y-auto rounded-b-lg bg-neutral-100 py-[2.1875rem]'
         }>
         <ul
           className={
