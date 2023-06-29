@@ -1,21 +1,35 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
+import clsx from 'clsx';
 
 import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from '@/../tailwind.config.js';
 
 import navigationLinks from '@/data/navigationLinks.json';
-import DesktopNavigation from './DesktopNavigation.tsx';
-import HamburgerButton from './HamburgerButton.tsx';
-import MobileNavigation from './MobileNavigation.tsx';
-import NavigationDivider from './NavigationDivider.tsx';
-import CartButton from '../CartButton.tsx';
+
 import Logo from '../Logo.tsx';
+import CartButton from '../CartButton.tsx';
+
+import DesktopNavigation from './DesktopNavigation.tsx';
+import MobileNavigation from './MobileNavigation.tsx';
+import HamburgerButton from './HamburgerButton.tsx';
+import NavigationDivider from './NavigationDivider.tsx';
 
 const fullConfig = resolveConfig(tailwindConfig);
 const screens = fullConfig?.theme?.screens as { [key: string]: string };
 
 export default function NavigationBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isNavigationTransparent, setIsNavigationTransparent] = useState(true);
+  const { pathname } = useLocation();
+
+  const handleCloseMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleToggleMobileMenu = () => {
+    setIsMobileMenuOpen(prevState => !prevState);
+  };
 
   const handleEscapePressed = useCallback((event: KeyboardEvent) => {
     if (event.key === 'Escape') {
@@ -23,29 +37,32 @@ export default function NavigationBar() {
     }
   }, []);
 
-  const handleCloseMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
-  const handleToggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  // Prevent scrolling when mobile menu is open and toggle scrollbar to prevent page from shifting
   useEffect(() => {
-    const html = document.querySelector('html');
-    const classesToToggle = [
-      'overflow-hidden',
-      'overflow-y-scroll',
-      'fixed',
-      'inset-0',
-    ];
+    const handleNavigationStyleChange = () => {
+      setIsNavigationTransparent(pathname === '/');
+    };
 
-    if (html) {
-      classesToToggle.forEach(classesToToggle => {
-        html.classList.toggle(classesToToggle, isMobileMenuOpen);
-      });
-    }
+    handleNavigationStyleChange();
+  }, [pathname]);
+
+  useEffect(() => {
+    const togglePageScrolling = () => {
+      const html = document.querySelector('html');
+      const classesToToggle = [
+        'overflow-hidden',
+        'overflow-y-scroll',
+        'fixed',
+        'inset-0',
+      ];
+
+      if (html) {
+        classesToToggle.forEach(classesToToggle => {
+          html.classList.toggle(classesToToggle, isMobileMenuOpen);
+        });
+      }
+    };
+
+    togglePageScrolling();
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
@@ -73,7 +90,11 @@ export default function NavigationBar() {
   }, [handleEscapePressed]);
 
   return (
-    <header className='fixed left-0 right-0 top-0 z-10'>
+    <header
+      className={clsx(
+        'fixed left-0 right-0 top-0 z-10',
+        isNavigationTransparent ? 'bg-transparent' : 'bg-neutral-900'
+      )}>
       <div className='container'>
         <div className='flex h-navigation-height items-center justify-between'>
           <div className='flex w-full items-center justify-between gap-2'>
