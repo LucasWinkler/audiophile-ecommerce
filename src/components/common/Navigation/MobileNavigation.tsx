@@ -16,7 +16,7 @@ export default function MobileNavigation({
 }: MobileNavigationProps) {
   return isMobileMenuOpen ? (
     <nav
-      className='absolute left-0 right-0 top-[calc(var(--navigation-height)+1px)] z-10 block overflow-y-auto overflow-x-hidden lg:max-h-[1/3]'
+      className='absolute left-0 right-0 top-[calc(var(--navigation-height)+1px)] z-10 block h-[calc(100vh-var(--navigation-height))] overflow-y-auto overflow-x-hidden lg:max-h-[1/3]'
       onClick={handleCloseMobileMenu}>
       <div className='fixed inset-0 top-navigation-height h-full w-full bg-neutral-900 opacity-50 xl:hidden'></div>
       <div
