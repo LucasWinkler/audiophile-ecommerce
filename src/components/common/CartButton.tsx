@@ -1,4 +1,4 @@
-import CartIcon from '../../assets/shared/desktop/icon-cart.svg';
+import CartIcon from '@/assets/shared/desktop/icon-cart.svg';
 
 type CartButtonProps = {
   onClick?: () => void;

@@ -1,4 +1,4 @@
-import HamburgerIcon from '../../assets/shared/tablet/icon-hamburger.svg';
+import HamburgerIcon from '@/assets/shared/tablet/icon-hamburger.svg';
 
 type HamburgerButtonProps = {
   className?: string;

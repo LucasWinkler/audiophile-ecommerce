@@ -1,16 +1,15 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import resolveConfig from 'tailwindcss/resolveConfig';
-import tailwindConfig from '../../../tailwind.config.js';
+import tailwindConfig from '@/../tailwind.config.js';
 
-import Logo from './Logo.tsx';
-import MobileNavigation from './MobileNavigation.tsx';
+import navigationLinks from '@/data/navigationLinks.json';
 import DesktopNavigation from './DesktopNavigation.tsx';
-import CartButton from './CartButton.tsx';
 import HamburgerButton from './HamburgerButton.tsx';
+import MobileNavigation from './MobileNavigation.tsx';
 import NavigationDivider from './NavigationDivider.tsx';
-
-import navigationLinks from '../../data/navigationLinks.json';
+import CartButton from '../CartButton.tsx';
+import Logo from '../Logo.tsx';
 
 const fullConfig = resolveConfig(tailwindConfig);
 const screens = fullConfig?.theme?.screens as { [key: string]: string };

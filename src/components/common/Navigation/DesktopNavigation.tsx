@@ -1,4 +1,4 @@
-import { NavigationLink as NavigationLinkType } from '../../types';
+import { NavigationLink as NavigationLinkType } from '@/types';
 import NavigationLink from './NavigationLink';
 
 type DesktopNavigationProps = {

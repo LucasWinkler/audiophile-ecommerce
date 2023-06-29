@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import AudiophileLogo from '../../assets/shared/desktop/logo.svg';
+import AudiophileLogo from '@/assets/shared/desktop/logo.svg';
 
 type LogoProps = {
   href?: string;

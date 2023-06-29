@@ -1,4 +1,4 @@
-import IconArrowRight from '../../assets/shared/desktop/icon-arrow-right.svg';
+import IconArrowRight from '@/assets/shared/desktop/icon-arrow-right.svg';
 
 type ArrowRightIconProps = {
   className?: string;
