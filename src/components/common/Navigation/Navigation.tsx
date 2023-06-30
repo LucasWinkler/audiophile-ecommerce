@@ -6,7 +6,6 @@ import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from '@/../tailwind.config.js';
 
 import desktopNavigationLinks from '@/data/navigationLinks.json';
-import mobileNavigationLinks from '@/data/categoryLinks.json';
 
 import Logo from '../Logo.tsx';
 import CartButton from '../CartButton.tsx';
@@ -108,10 +107,7 @@ export default function Navigation() {
               <Logo onClick={handleCloseMobileMenu} />
             </div>
             {isMobileMenuOpen ? (
-              <MobileNavigation
-                navigationLinks={mobileNavigationLinks}
-                handleCloseMobileMenu={handleCloseMobileMenu}
-              />
+              <MobileNavigation handleCloseMobileMenu={handleCloseMobileMenu} />
             ) : (
               <DesktopNavigation navigationLinks={desktopNavigationLinks} />
             )}

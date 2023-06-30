@@ -1,16 +1,11 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import clsx from 'clsx';
-import ArrowRightIcon from '../../ArrowRightIcon';
-import { NavigationLink as NavigationLinkType } from '@/types';
+import CategoryList from '../../CategoryList/CategoryList';
 
 type MobileNavigationProps = {
-  navigationLinks: NavigationLinkType[];
   handleCloseMobileMenu: () => void;
 };
 
 export default function MobileNavigation({
-  navigationLinks,
   handleCloseMobileMenu,
 }: MobileNavigationProps) {
   useEffect(() => {
@@ -38,45 +33,9 @@ export default function MobileNavigation({
         className={
           'relative max-h-[calc(var(--vh,1vh)*100-var(--navigation-height))] overflow-y-auto rounded-b-lg bg-neutral-100 py-[2.1875rem]'
         }>
-        <ul
-          className={
-            'container relative mt-9 flex flex-col items-center justify-center gap-[3.75rem] lg:flex-row lg:gap-[1rem]'
-          }>
-          {navigationLinks.map(
-            ({
-              name,
-              href,
-              shouldHideInMobileMenu,
-              thumbnail,
-            }: NavigationLinkType) => (
-              // TODO: Extract li to own component to be used in other places
-              <li
-                className={clsx(
-                  'relative flex w-full flex-col items-center justify-center rounded-lg bg-neutral-400 p-4',
-                  shouldHideInMobileMenu && 'hidden'
-                )}
-                key={name}>
-                <div className='flex w-full flex-col items-center justify-center'>
-                  <img
-                    className='absolute top-[-26%] h-[8rem] w-auto'
-                    src={thumbnail}
-                    alt={`${name} Thumbnail`}
-                  />
-                  <p className='pt-[4.5rem] text-center text-base font-bold uppercase tracking-[0.06694rem]'>
-                    {name}
-                  </p>
-                  <Link
-                    className='btn btn-simple pt-2 before:absolute before:inset-0 before:block'
-                    onClick={handleCloseMobileMenu}
-                    to={href}>
-                    Shop
-                    <ArrowRightIcon />
-                  </Link>
-                </div>
-              </li>
-            )
-          )}
-        </ul>
+        <div className='container mt-9'>
+          <CategoryList onCategoryClick={handleCloseMobileMenu} />
+        </div>
       </div>
     </nav>
   );
