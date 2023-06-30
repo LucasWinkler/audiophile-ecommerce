@@ -8,7 +8,7 @@ import tailwindConfig from '@/../tailwind.config.js';
 import desktopNavigationLinks from '@/data/navigationLinks.json';
 
 import Logo from '../Logo.tsx';
-import CartButton from '../CartButton.tsx';
+import CartButton from '../Cart/CartButton/CartButton.tsx';
 
 import DesktopNavigation from './DesktopNavigation/DesktopNavigation.tsx';
 import MobileNavigation from './MobileNavigation/MobileNavigation.tsx';
@@ -113,7 +113,7 @@ export default function Navigation() {
     <header
       className={clsx(
         'fixed left-0 right-0 top-0 z-10',
-        isHomePage && 'transition duration-300 ease-in-out',
+        isHomePage && 'transition duration-[250ms] ease-in-out',
         isMobileMenuOpen
           ? 'bg-neutral-900'
           : isNavigationTransparent

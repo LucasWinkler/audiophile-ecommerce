@@ -8,7 +8,7 @@ export default function Earphones() {
           </h1>
         </div>
       </div>
-      <div className='py-10 text-base'>
+      <div className='container py-10 text-base'>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
           voluptatum aut nam cum aliquid fugiat deleniti. Impedit voluptatibus
