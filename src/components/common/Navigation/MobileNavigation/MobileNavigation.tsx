@@ -12,6 +12,7 @@ export default function MobileNavigation({
     const handleResize = () => {
       const vhInPixels = window.innerHeight * 0.01;
       const vhInRem = `${vhInPixels / 16}rem`;
+
       document.documentElement.style.setProperty('--nav-vh', vhInRem);
     };
 
@@ -31,7 +32,7 @@ export default function MobileNavigation({
       <div
         onClick={event => event.stopPropagation()}
         className={
-          'slim-scrollbar relative max-h-[calc(var(--vh,1vh)*100-var(--navigation-height))] overflow-y-auto rounded-b-lg bg-neutral-100 py-[2.1875rem]'
+          'slim-scrollbar relative max-h-[calc(var(--nav-vh,1vh)*100-var(--navigation-height))] overflow-y-auto rounded-b-lg bg-neutral-100 py-[2.1875rem]'
         }>
         <div className='container mt-9'>
           <CategoryList onCategoryClick={handleCloseMobileMenu} />
