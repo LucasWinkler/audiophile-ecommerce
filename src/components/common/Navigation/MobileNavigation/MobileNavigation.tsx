@@ -25,13 +25,13 @@ export default function MobileNavigation({
 
   return (
     <nav
-      className='absolute left-0 right-0 top-[calc(var(--navigation-height)+1px)] z-10 block overflow-y-auto overflow-x-hidden '
+      className='absolute left-0 right-0 top-[calc(var(--navigation-height)+1px)] z-10 block overflow-y-auto overflow-x-hidden'
       onClick={handleCloseMobileMenu}>
       <div className='fixed inset-0 top-navigation-height h-full w-full bg-neutral-900 opacity-50 xl:hidden'></div>
       <div
         onClick={event => event.stopPropagation()}
         className={
-          'relative max-h-[calc(var(--vh,1vh)*100-var(--navigation-height))] overflow-y-auto rounded-b-lg bg-neutral-100 py-[2.1875rem]'
+          'slim-scrollbar relative max-h-[calc(var(--vh,1vh)*100-var(--navigation-height))] overflow-y-auto rounded-b-lg bg-neutral-100 py-[2.1875rem]'
         }>
         <div className='container mt-9'>
           <CategoryList onCategoryClick={handleCloseMobileMenu} />
