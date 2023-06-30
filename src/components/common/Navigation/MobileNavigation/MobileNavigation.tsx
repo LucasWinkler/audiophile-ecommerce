@@ -16,8 +16,8 @@ export default function MobileNavigation({
       document.documentElement.style.setProperty('--nav-vh', vhInRem);
     };
 
-    window.addEventListener('resize', handleResize);
     handleResize();
+    window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('resize', handleResize);

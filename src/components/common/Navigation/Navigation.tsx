@@ -38,10 +38,24 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleNavigationStyleChange = () => {
-      setIsNavigationTransparent(pathname === '/');
+      const navigationHeightInRem = parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue(
+          '--navigation-height'
+        )
+      );
+      const navigationHeightInPixels = navigationHeightInRem * 16;
+
+      setIsNavigationTransparent(
+        pathname === '/' && window.scrollY >= navigationHeightInPixels
+      );
     };
 
     handleNavigationStyleChange();
+    window.addEventListener('scroll', handleNavigationStyleChange);
+
+    return () => {
+      window.removeEventListener('scroll', handleNavigationStyleChange);
+    };
   }, [pathname]);
 
   useEffect(() => {
@@ -73,6 +87,7 @@ export default function Navigation() {
       }
     };
 
+    handleViewportChange();
     window.addEventListener('resize', handleViewportChange);
 
     return () => {
