@@ -114,7 +114,11 @@ export default function Navigation() {
       className={clsx(
         'fixed left-0 right-0 top-0 z-10',
         isHomePage && 'transition duration-300 ease-in-out',
-        isNavigationTransparent ? 'bg-transparent' : 'bg-neutral-900'
+        isMobileMenuOpen
+          ? 'bg-neutral-900'
+          : isNavigationTransparent
+          ? 'bg-transparent'
+          : 'bg-neutral-900'
       )}>
       <div className='container'>
         <div className='flex h-navigation-height items-center justify-between'>
