@@ -97,7 +97,7 @@ export default function Navigation() {
       <div className='container'>
         <div className='flex h-navigation-height items-center justify-between'>
           <div className='flex w-full items-center justify-between gap-2'>
-            <div className='flex flex-grow basis-0 items-center justify-start xl:hidden '>
+            <div className='flex flex-grow basis-0 items-center justify-start xl:hidden'>
               <MobileNavigationButton
                 onClick={handleToggleMobileMenu}
                 isMobileMenuOpen={isMobileMenuOpen}
