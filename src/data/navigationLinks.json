@@ -1,25 +1,18 @@
 [
   {
     "name": "Home",
-    "href": "/",
-    "className": "hidden xl:list-item"
+    "href": "/"
   },
   {
     "name": "Headphones",
-    "href": "/headphones",
-    "className": "",
-    "thumbnail": "./images/shared/image-category-thumbnail-headphones.png"
+    "href": "/headphones"
   },
   {
     "name": "Speakers",
-    "href": "/speakers",
-    "className": "",
-    "thumbnail": "./images/shared/image-category-thumbnail-speakers.png"
+    "href": "/speakers"
   },
   {
     "name": "Earphones",
-    "href": "/earphones",
-    "className": "",
-    "thumbnail": "./images/shared/image-category-thumbnail-earphones.png"
+    "href": "/earphones"
   }
 ]

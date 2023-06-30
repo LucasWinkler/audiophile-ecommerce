@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 
-type NavigationLinkProps = {
+type DesktopNavigationLinkProps = {
   to: string;
   className?: string;
   children: React.ReactNode;
@@ -10,18 +10,18 @@ type NavigationLinkProps = {
 
 const activeLinkClassNames = 'text-orange';
 
-export default function NavigationLink({
+export default function DesktopNavigationLink({
   to,
   className,
   children,
   onClick,
-}: NavigationLinkProps) {
+}: DesktopNavigationLinkProps) {
   return (
     <NavLink
       to={to}
       className={({ isActive }) =>
         clsx(
-          'whitespace-nowrap px-2 py-2 text-xs uppercase tracking-[0.125rem] transition-colors duration-300 hover:text-orange',
+          'whitespace-nowrap px-2 py-2 text-xs uppercase tracking-[0.125rem] text-neutral-100 transition-colors duration-300 hover:text-orange',
           isActive && activeLinkClassNames,
           className
         )

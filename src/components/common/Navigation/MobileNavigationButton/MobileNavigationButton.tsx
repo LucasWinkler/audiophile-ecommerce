@@ -1,16 +1,16 @@
 import HamburgerIcon from '@/assets/shared/tablet/icon-hamburger.svg';
 
-type HamburgerButtonProps = {
+type MobileNavigationButtonProps = {
   className?: string;
   onClick?: () => void;
   isMobileMenuOpen: boolean;
 };
 
-export default function HamburgerButton({
+export default function MobileNavigationButton({
   className,
   onClick,
   isMobileMenuOpen,
-}: HamburgerButtonProps) {
+}: MobileNavigationButtonProps) {
   return (
     <button className={className} onClick={onClick}>
       <span className='sr-only'>

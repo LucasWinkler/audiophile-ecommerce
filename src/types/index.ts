@@ -1,6 +1,6 @@
 export type NavigationLink = {
   name: string;
   href: string;
-  className?: string;
+  shouldHideInMobileMenu?: boolean;
   thumbnail?: string;
 };

@@ -1,24 +1,23 @@
-import clsx from 'clsx';
-import { Link } from 'react-router-dom';
-import { NavigationLink as NavigationLinkType } from '@/types';
-import ArrowRightIcon from '../ArrowRightIcon';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import clsx from 'clsx';
+import ArrowRightIcon from '../../ArrowRightIcon';
+import { NavigationLink as NavigationLinkType } from '@/types';
 
 type MobileNavigationProps = {
   navigationLinks: NavigationLinkType[];
-  isMobileMenuOpen: boolean;
   handleCloseMobileMenu: () => void;
 };
 
 export default function MobileNavigation({
   navigationLinks,
-  isMobileMenuOpen,
   handleCloseMobileMenu,
 }: MobileNavigationProps) {
   useEffect(() => {
     const handleResize = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh / 16}rem`);
+      const vhInPixels = window.innerHeight * 0.01;
+      const vhInRem = `${vhInPixels / 16}rem`;
+      document.documentElement.style.setProperty('--nav-vh', vhInRem);
     };
 
     window.addEventListener('resize', handleResize);
@@ -29,7 +28,7 @@ export default function MobileNavigation({
     };
   }, []);
 
-  return isMobileMenuOpen ? (
+  return (
     <nav
       className='absolute left-0 right-0 top-[calc(var(--navigation-height)+1px)] z-10 block overflow-y-auto overflow-x-hidden '
       onClick={handleCloseMobileMenu}>
@@ -44,12 +43,17 @@ export default function MobileNavigation({
             'container relative mt-9 flex flex-col items-center justify-center gap-[3.75rem] lg:flex-row lg:gap-[1rem]'
           }>
           {navigationLinks.map(
-            ({ name, href, className, thumbnail }: NavigationLinkType) => (
+            ({
+              name,
+              href,
+              shouldHideInMobileMenu,
+              thumbnail,
+            }: NavigationLinkType) => (
               // TODO: Extract li to own component to be used in other places
               <li
                 className={clsx(
                   'relative flex w-full flex-col items-center justify-center rounded-lg bg-neutral-400 p-4',
-                  className
+                  shouldHideInMobileMenu && 'hidden'
                 )}
                 key={name}>
                 <div className='flex w-full flex-col items-center justify-center'>
@@ -75,5 +79,5 @@ export default function MobileNavigation({
         </ul>
       </div>
     </nav>
-  ) : null;
+  );
 }

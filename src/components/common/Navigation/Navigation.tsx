@@ -5,20 +5,20 @@ import clsx from 'clsx';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from '@/../tailwind.config.js';
 
-import navigationLinks from '@/data/navigationLinks.json';
+import desktopNavigationLinks from '@/data/navigationLinks.json';
+import mobileNavigationLinks from '@/data/categoryLinks.json';
 
 import Logo from '../Logo.tsx';
 import CartButton from '../CartButton.tsx';
 
-import DesktopNavigation from './DesktopNavigation.tsx';
-import MobileNavigation from './MobileNavigation.tsx';
-import HamburgerButton from './HamburgerButton.tsx';
-import NavigationDivider from './NavigationDivider.tsx';
+import DesktopNavigation from './DesktopNavigation/DesktopNavigation.tsx';
+import MobileNavigation from './MobileNavigation/MobileNavigation.tsx';
+import MobileNavigationButton from './MobileNavigationButton/MobileNavigationButton.tsx';
 
 const fullConfig = resolveConfig(tailwindConfig);
 const screens = fullConfig?.theme?.screens as { [key: string]: string };
 
-export default function NavigationBar() {
+export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isNavigationTransparent, setIsNavigationTransparent] = useState(true);
   const { pathname } = useLocation();
@@ -99,7 +99,7 @@ export default function NavigationBar() {
         <div className='flex h-navigation-height items-center justify-between'>
           <div className='flex w-full items-center justify-between gap-2'>
             <div className='flex flex-grow basis-0 items-center justify-start xl:hidden '>
-              <HamburgerButton
+              <MobileNavigationButton
                 onClick={handleToggleMobileMenu}
                 isMobileMenuOpen={isMobileMenuOpen}
               />
@@ -107,21 +107,20 @@ export default function NavigationBar() {
             <div className='xl:flex xl:flex-grow xl:basis-0'>
               <Logo onClick={handleCloseMobileMenu} />
             </div>
-            <MobileNavigation
-              navigationLinks={navigationLinks}
-              isMobileMenuOpen={isMobileMenuOpen}
-              handleCloseMobileMenu={handleCloseMobileMenu}
-            />
-            <DesktopNavigation
-              navigationLinks={navigationLinks}
-              isMobileMenuOpen={isMobileMenuOpen}
-            />
+            {isMobileMenuOpen ? (
+              <MobileNavigation
+                navigationLinks={mobileNavigationLinks}
+                handleCloseMobileMenu={handleCloseMobileMenu}
+              />
+            ) : (
+              <DesktopNavigation navigationLinks={desktopNavigationLinks} />
+            )}
             <div className='flex flex-grow basis-0 items-center justify-end'>
               <CartButton onClick={handleCloseMobileMenu} />
             </div>
           </div>
         </div>
-        <NavigationDivider />
+        <span className='full-bleed sm:no-bleed fixed z-10 block h-[0.0625rem] bg-neutral-100/20'></span>
       </div>
     </header>
   );
