@@ -21,6 +21,13 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isNavigationTransparent, setIsNavigationTransparent] = useState(true);
   const { pathname } = useLocation();
+  const isHomePage = pathname === '/';
+  const navigationHeightInRem = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue(
+      '--navigation-height'
+    )
+  );
+  const navigationHeightInPixels = navigationHeightInRem * 16 + 1;
 
   const handleCloseMobileMenu = () => {
     setIsMobileMenuOpen(false);
@@ -38,16 +45,15 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleNavigationStyleChange = () => {
-      const navigationHeightInRem = parseFloat(
-        getComputedStyle(document.documentElement).getPropertyValue(
-          '--navigation-height'
-        )
-      );
-      const navigationHeightInPixels = navigationHeightInRem * 16;
+      if (!isHomePage) {
+        setIsNavigationTransparent(false);
+        return;
+      }
 
-      setIsNavigationTransparent(
-        pathname === '/' && window.scrollY >= navigationHeightInPixels
-      );
+      const hasScrolledPastNavigation =
+        window.scrollY >= navigationHeightInPixels;
+
+      setIsNavigationTransparent(!hasScrolledPastNavigation);
     };
 
     handleNavigationStyleChange();
@@ -56,7 +62,7 @@ export default function Navigation() {
     return () => {
       window.removeEventListener('scroll', handleNavigationStyleChange);
     };
-  }, [pathname]);
+  }, [isHomePage, navigationHeightInPixels]);
 
   useEffect(() => {
     const togglePageScrolling = () => {
@@ -107,6 +113,7 @@ export default function Navigation() {
     <header
       className={clsx(
         'fixed left-0 right-0 top-0 z-10',
+        isHomePage && 'transition duration-300 ease-in-out',
         isNavigationTransparent ? 'bg-transparent' : 'bg-neutral-900'
       )}>
       <div className='container'>
