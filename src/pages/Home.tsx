@@ -2,13 +2,14 @@ export default function Home() {
   return (
     <section className=''>
       <div className='bg-neutral-800 pb-[12.25rem] pt-[calc(12.25rem+var(--navigation-height))]'>
-        <div className='flex flex-col items-center justify-center '>
+        <div className='flex flex-col items-center justify-center'>
           <h1 className='text-center text-4xl font-bold text-neutral-100'>
             Home
           </h1>
         </div>
       </div>
       <div className='container py-10 text-base'>
+        {/* <button className='primar'>See product</button> */}
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
           voluptatum aut nam cum aliquid fugiat deleniti. Impedit voluptatibus

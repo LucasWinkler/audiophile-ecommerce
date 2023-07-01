@@ -1,4 +1,5 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
+import plugin from 'tailwindcss/plugin';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -122,5 +123,46 @@ export default {
   corePlugins: {
     container: false,
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addComponents, addUtilities, theme }) {
+      addUtilities({
+        '.full-bleed': {
+          position: 'relative',
+          left: '50%',
+          right: '50%',
+          marginLeft: '-50vw',
+          marginRight: '-50vw',
+          width: '100vw',
+        },
+        '.no-bleed': {
+          position: 'unset',
+          left: 'unset',
+          right: 'unset',
+          marginLeft: 'unset',
+          marginRight: 'unset',
+          width: 'unset',
+        },
+        '.slim-scrollbar': {
+          scrollbarWidth: 'thin',
+          scrollbarColor: `${theme('colors.neutral.900')} ${theme(
+            'colors.neutral.100'
+          )}`,
+          '&::-webkit-scrollbar': {
+            width: '0.75rem',
+          },
+          '&::-webkit-scrollbar-track': {
+            backgroundColor: theme('colors.neutral.100'),
+          },
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: `${theme('colors.neutral.900')}D9`,
+            borderRadius: theme('borderRadius.lg'),
+
+            '&:hover': {
+              backgroundColor: `${theme('colors.neutral.900')}B3`,
+            },
+          },
+        },
+      });
+    }),
+  ],
 };

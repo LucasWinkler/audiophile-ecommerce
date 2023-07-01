@@ -104,34 +104,3 @@
     }
   }
 }
-
-@layer utilities {
-  .full-bleed {
-    @apply relative left-1/2 right-1/2 -mx-[50vw] w-screen;
-  }
-
-  .no-bleed {
-    @apply left-auto right-auto mx-auto w-auto [position:unset];
-  }
-
-  .slim-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: @apply bg-neutral-900/[85%] bg-neutral-100;
-  }
-
-  .slim-scrollbar::-webkit-scrollbar {
-    @apply w-[12px];
-  }
-
-  .slim-scrollbar::-webkit-scrollbar-thumb {
-    @apply rounded-lg bg-neutral-900/[85%];
-  }
-
-  .slim-scrollbar::-webkit-scrollbar-thumb:hover {
-    @apply bg-neutral-900/80;
-  }
-
-  .slim-scrollbar::-webkit-scrollbar-track {
-    @apply bg-neutral-100;
-  }
-}
