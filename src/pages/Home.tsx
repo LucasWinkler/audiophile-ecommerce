@@ -12,7 +12,7 @@ export default function Home() {
         </div>
       </div>
       <Container className='py-10 text-base'>
-        <Button intent='primary'>See product</Button>
+        <Button>See product</Button>
         <Button intent='secondary'>See product</Button>
         <Button intent='secondary-alt'>See product</Button>
         <Button intent='simple'>See product</Button>

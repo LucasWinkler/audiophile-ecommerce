@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Button from '@/components/common/Button/Button';
 import ArrowRightIcon from '@/components/common/ArrowRightIcon';
 
 type CategoryProps = {
@@ -25,13 +25,14 @@ export default function Category({
         <p className='pt-[4.5rem] text-center text-base font-bold uppercase tracking-[0.06694rem]'>
           {name}
         </p>
-        <Link
-          className='btn btn-simple pt-2 before:absolute before:inset-0 before:block'
+        <Button
+          intent='simple'
+          className='pt-2 before:absolute before:inset-0 before:block'
           onClick={onClick}
           to={href}>
           Shop
           <ArrowRightIcon />
-        </Link>
+        </Button>
       </div>
     </li>
   );

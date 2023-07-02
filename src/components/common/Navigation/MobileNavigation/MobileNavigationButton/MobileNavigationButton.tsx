@@ -2,7 +2,7 @@ import HamburgerIcon from '@/assets/shared/tablet/icon-hamburger.svg';
 
 type MobileNavigationButtonProps = {
   className?: string;
-  onClick?: () => void;
+  onClick: () => void;
   isMobileMenuOpen: boolean;
 };
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, EventHandler } from 'react';
 import { useLocation } from 'react-router-dom';
 import { twJoin } from 'tailwind-merge';
 
@@ -68,18 +68,7 @@ export default function Navigation() {
   useEffect(() => {
     const togglePageScrolling = () => {
       const html = document.querySelector('html');
-      const classesToToggle = [
-        'overflow-hidden',
-        'overflow-y-scroll',
-        'fixed',
-        'inset-0',
-      ];
-
-      if (html) {
-        classesToToggle.forEach(classesToToggle => {
-          html.classList.toggle(classesToToggle, isMobileMenuOpen);
-        });
-      }
+      html?.classList.toggle('overflow-hidden', isMobileMenuOpen);
     };
 
     togglePageScrolling();
