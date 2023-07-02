@@ -124,7 +124,7 @@ export default {
     container: false,
   },
   plugins: [
-    plugin(function ({ addComponents, addUtilities, theme }) {
+    plugin(function ({ addUtilities, theme }) {
       addUtilities({
         '.full-bleed': {
           position: 'relative',
@@ -144,7 +144,7 @@ export default {
         },
         '.slim-scrollbar': {
           scrollbarWidth: 'thin',
-          scrollbarColor: `${theme('colors.neutral.900')} ${theme(
+          scrollbarColor: `${theme('colors.neutral.900')}D9 ${theme(
             'colors.neutral.100'
           )}`,
           '&::-webkit-scrollbar': {

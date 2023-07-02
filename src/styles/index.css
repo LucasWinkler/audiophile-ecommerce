@@ -56,12 +56,6 @@
 }
 
 @layer components {
-  .container {
-    @apply [--max-width:90rem] [--padding:1rem] md:[--padding:1.5rem] lg:[--padding:2rem] 2xl:[--padding:3rem];
-
-    width: min(100% - calc(var(--padding) * 2), var(--max-width));
-    margin-inline: auto;
-  }
   .btn {
     @apply [--padding-x:1.9rem] [--padding-y:0.94rem];
     @apply inline-block cursor-pointer select-none whitespace-nowrap px-[--padding-x] py-[--padding-y] text-center text-xs uppercase tracking-[0.0625rem] transition duration-300 ease-in-out;

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import CategoryList from '../../CategoryList/CategoryList';
+import Container from '@/components/common/Container';
 
 type MobileNavigationProps = {
   handleCloseMobileMenu: () => void;
@@ -32,11 +33,11 @@ export default function MobileNavigation({
       <div
         onClick={event => event.stopPropagation()}
         className={
-          'slim-scrollbar relative max-h-[calc(var(--nav-vh,1vh)*100-var(--navigation-height))] overflow-y-auto rounded-b-lg bg-neutral-100 py-[2.1875rem]'
+          'relative max-h-[calc(var(--nav-vh,1vh)*100-var(--navigation-height))] overflow-y-auto rounded-b-lg bg-neutral-100 py-[2.1875rem] slim-scrollbar'
         }>
-        <div className='container mt-9'>
+        <Container className='mt-9'>
           <CategoryList onCategoryClick={handleCloseMobileMenu} />
-        </div>
+        </Container>
       </div>
     </nav>
   );

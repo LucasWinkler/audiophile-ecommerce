@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import clsx from 'clsx';
+import { twJoin } from 'tailwind-merge';
 
 type DesktopNavigationLinkProps = {
   to: string;
@@ -20,7 +20,7 @@ export default function DesktopNavigationLink({
     <NavLink
       to={to}
       className={({ isActive }) =>
-        clsx(
+        twJoin(
           'whitespace-nowrap px-2 py-2 text-xs uppercase tracking-[0.125rem] text-neutral-100 transition-colors duration-300 hover:text-orange',
           isActive && activeLinkClassNames,
           className

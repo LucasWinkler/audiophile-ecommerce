@@ -1,6 +1,8 @@
+import Container from '@/components/common/Container';
+
 export default function Earphones() {
   return (
-    <section className=''>
+    <section>
       <div className='bg-neutral-800 pb-[6.125rem] pt-[calc(6.125rem+var(--navigation-height))]'>
         <div className='flex flex-col items-center justify-center '>
           <h1 className='text-center text-4xl font-bold text-neutral-100'>
@@ -8,7 +10,7 @@ export default function Earphones() {
           </h1>
         </div>
       </div>
-      <div className='container py-10 text-base'>
+      <Container className='py-10 text-base'>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
           voluptatum aut nam cum aliquid fugiat deleniti. Impedit voluptatibus
@@ -33,7 +35,7 @@ export default function Earphones() {
           sapiente reprehenderit, numquam ratione esse minus rem sint provident
           fugit.
         </p>
-      </div>
+      </Container>
     </section>
   );
 }

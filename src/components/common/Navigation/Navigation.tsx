@@ -1,18 +1,19 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
-import clsx from 'clsx';
+import { twJoin } from 'tailwind-merge';
 
 import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from '@/../tailwind.config.js';
 
 import desktopNavigationLinks from '@/data/navigationLinks.json';
 
-import Logo from '../Logo.tsx';
-import CartButton from '../Cart/CartButton/CartButton.tsx';
+import Logo from '@/components/common/Logo.tsx';
+import CartButton from '@/components/common/Cart/CartButton/CartButton';
 
-import DesktopNavigation from './DesktopNavigation/DesktopNavigation.tsx';
-import MobileNavigation from './MobileNavigation/MobileNavigation.tsx';
-import MobileNavigationButton from './MobileNavigationButton/MobileNavigationButton.tsx';
+import Container from '@/components/common/Container';
+import DesktopNavigation from './DesktopNavigation/DesktopNavigation';
+import MobileNavigation from './MobileNavigation/MobileNavigation';
+import MobileNavigationButton from './MobileNavigation/MobileNavigationButton/MobileNavigationButton.tsx';
 
 const fullConfig = resolveConfig(tailwindConfig);
 const screens = fullConfig?.theme?.screens as { [key: string]: string };
@@ -111,7 +112,7 @@ export default function Navigation() {
 
   return (
     <header
-      className={clsx(
+      className={twJoin(
         'fixed left-0 right-0 top-0 z-10',
         isHomePage && 'transition duration-[250ms] ease-in-out',
         isMobileMenuOpen
@@ -120,7 +121,7 @@ export default function Navigation() {
           ? 'bg-transparent'
           : 'bg-neutral-900'
       )}>
-      <div className='container'>
+      <Container>
         <div className='flex h-navigation-height items-center justify-between'>
           <div className='flex w-full items-center justify-between gap-2'>
             <div className='flex flex-grow basis-0 items-center justify-start xl:hidden'>
@@ -142,8 +143,8 @@ export default function Navigation() {
             </div>
           </div>
         </div>
-        <span className='full-bleed sm:no-bleed fixed z-10 block h-[0.0625rem] bg-neutral-100/20'></span>
-      </div>
+        <span className='fixed z-10 block h-[0.0625rem] bg-neutral-100/20 full-bleed sm:no-bleed'></span>
+      </Container>
     </header>
   );
 }
