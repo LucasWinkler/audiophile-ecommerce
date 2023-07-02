@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, EventHandler } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { twJoin } from 'tailwind-merge';
 

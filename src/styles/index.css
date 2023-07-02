@@ -8,7 +8,7 @@
   }
 
   html {
-    @apply h-full scroll-smooth antialiased;
+    @apply h-full antialiased;
   }
 
   body {
