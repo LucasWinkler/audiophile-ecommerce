@@ -1,4 +1,5 @@
 import Container from '@/components/common/Container';
+import Button from '@/components/common/Button/Button';
 
 export default function Home() {
   return (
@@ -11,10 +12,10 @@ export default function Home() {
         </div>
       </div>
       <Container className='py-10 text-base'>
-        <button className='btn btn-primary'>See product</button>
-        <button className='btn btn-secondary'>See product</button>
-        <button className='btn btn-secondary-alt'>See product</button>
-        <button className='btn btn-simple'>See product</button>
+        <Button intent='primary'>See product</Button>
+        <Button intent='secondary'>See product</Button>
+        <Button intent='secondary-alt'>See product</Button>
+        <Button intent='simple'>See product</Button>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
           voluptatum aut nam cum aliquid fugiat deleniti. Impedit voluptatibus
