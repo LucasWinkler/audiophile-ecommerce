@@ -1,5 +1,5 @@
 import Button from '@/components/common/Button/Button';
-import ArrowRightIcon from '@/components/common/ArrowRightIcon';
+import ArrowRightIcon from '@/components/common/icons/ArrowRightIcon';
 
 type CategoryProps = {
   name: string;
