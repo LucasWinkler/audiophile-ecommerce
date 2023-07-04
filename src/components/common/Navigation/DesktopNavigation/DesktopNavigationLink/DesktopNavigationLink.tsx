@@ -21,7 +21,7 @@ export default function DesktopNavigationLink({
       to={to}
       className={({ isActive }) =>
         twJoin(
-          'whitespace-nowrap px-2 py-2 text-xs uppercase tracking-[0.125rem] text-neutral-100 transition-colors duration-300 hover:text-orange',
+          'whitespace-nowrap text-xs uppercase tracking-[0.125rem] text-neutral-100 transition-colors duration-300 hover:text-orange',
           isActive && activeLinkClassNames,
           className
         )

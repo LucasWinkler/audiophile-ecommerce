@@ -1,15 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { twJoin } from 'tailwind-merge';
-
 import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from '@/../tailwind.config.js';
-
 import desktopNavigationLinks from '@/data/navigationLinks.json';
-
 import Logo from '@/components/common/Logo.tsx';
 import CartButton from '@/components/common/Cart/CartButton/CartButton';
-
 import Container from '@/components/common/Container';
 import DesktopNavigation from './DesktopNavigation/DesktopNavigation';
 import MobileNavigation from './MobileNavigation/MobileNavigation';
@@ -132,7 +128,7 @@ export default function Navigation() {
             </div>
           </div>
         </div>
-        <span className='fixed z-10 block h-[0.0625rem] bg-neutral-100/20 full-bleed sm:no-bleed'></span>
+        <span className='absolute z-10 block h-[0.0625rem] bg-neutral-100/20 full-bleed sm:no-bleed'></span>
       </Container>
     </header>
   );

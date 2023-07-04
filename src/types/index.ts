@@ -8,3 +8,7 @@ export type Category = {
   href: string;
   thumbnail: string;
 };
+
+export type IconProps = {
+  className?: string;
+};

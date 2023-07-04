@@ -10,7 +10,7 @@ export default function DesktopNavigation({
 }: DesktopNavigationProps) {
   return (
     <nav className='hidden xl:flex'>
-      <ul className='flex gap-3'>
+      <ul className='flex gap-[2.12rem]'>
         {navigationLinks.map(({ name, href }: NavigationLinkType) => (
           <li key={name}>
             <DesktopNavigationLink to={href}>{name}</DesktopNavigationLink>
