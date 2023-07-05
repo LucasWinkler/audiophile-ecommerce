@@ -8,7 +8,7 @@ import Zx9SpeakerSection from '@/components/home/Zx9SpeakerSection/Zx9SpeakerSec
 export default function Home() {
   return (
     <main className='pb-[7.5rem] md:pb-[6rem] xl:pb-[10rem]'>
-      <HeroSection className='pt-[calc(12.25rem+var(--navigation-height))]' />
+      <HeroSection className='pb-[6.875rem] pt-[calc(6.875rem+var(--navigation-height))] xl:pb-[9.875rem] xl:pt-[calc(8rem+var(--navigation-height))]' />
       <CategorySection className='mt-[5.75rem] lg:mt-[9.1875rem]' />
       <Zx9SpeakerSection className='mt-[7.5rem] lg:mt-[6rem] xl:mt-[3rem]' />
       <Zx7SpeakerSection className='mt-[1.5rem] md:mt-[2rem] xl:mt-[3rem]' />

@@ -29,7 +29,7 @@ export default function Zx7SpeakerSection({
             loading='lazy'
           />
           <img
-            className='absolute left-0 top-0 z-[-1] hidden h-full w-full object-cover md:block'
+            className='absolute left-0 top-0 z-[-1] hidden h-full w-full object-cover md:block xl:hidden'
             src={zx7SpeakerTablet}
             width='689'
             height='320'
