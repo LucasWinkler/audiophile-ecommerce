@@ -1,46 +1,19 @@
-import Container from '@/components/common/Container';
-import Button from '@/components/common/Button/Button';
+import AudioGearSection from '@/components/common/AudioGearSection/AudioGearSection';
+import CategorySection from '@/components/common/CategorySection/CategorySection';
+import HeroSection from '@/components/home/HeroSection/HeroSection';
+import Yx1EarphonesSection from '@/components/home/Yx1EarphonesSection/Yx1EarphonesSection';
+import Zx7SpeakerSection from '@/components/home/Zx7SpeakerSection/Zx7SpeakerSection';
+import Zx9SpeakerSection from '@/components/home/Zx9SpeakerSection/Zx9SpeakerSection';
 
 export default function Home() {
   return (
-    <section>
-      <div className='bg-neutral-800 pb-[12.25rem] pt-[calc(12.25rem+var(--navigation-height))]'>
-        <div className='flex flex-col items-center justify-center'>
-          <h1 className='text-center text-4xl font-bold text-neutral-100'>
-            Home
-          </h1>
-        </div>
-      </div>
-      <Container className='py-10 text-base'>
-        <Button>See product</Button>
-        <Button intent='secondary'>See product</Button>
-        <Button intent='secondary-alt'>See product</Button>
-        <Button intent='simple'>See product</Button>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-          voluptatum aut nam cum aliquid fugiat deleniti. Impedit voluptatibus
-          delectus id, totam ipsum ullam error, vitae nam excepturi molestiae
-          dolore in officia quam nobis esse beatae? Quasi rem aperiam dolor ea
-          totam ipsam nulla ex, ullam laborum blanditiis est aspernatur
-          temporibus quibusdam nemo tempora voluptatibus itaque optio labore!
-          Distinctio doloremque iure laboriosam reprehenderit quod sequi facilis
-          voluptate nihil minus blanditiis, aperiam voluptatum qui explicabo
-          laborum possimus totam corrupti atque dolorum voluptatem iste eveniet
-          corporis! Pariatur, corrupti vel? Maiores illo rerum fugiat?
-        </p>
-        <br />
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem nemo
-          harum iusto, quaerat nesciunt ad nam. Natus tempore eveniet quibusdam?
-        </p>
-        <br />
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. A itaque est
-          vel eveniet distinctio aperiam aspernatur nulla ex placeat dolore
-          sapiente reprehenderit, numquam ratione esse minus rem sint provident
-          fugit.
-        </p>
-      </Container>
-    </section>
+    <main className='pb-[7.5rem] md:pb-[6rem] xl:pb-[10rem]'>
+      <HeroSection className='pt-[calc(12.25rem+var(--navigation-height))]' />
+      <CategorySection className='mt-[5.75rem] lg:mt-[9.1875rem]' />
+      <Zx9SpeakerSection className='mt-[7.5rem] lg:mt-[6rem] xl:mt-[3rem]' />
+      <Zx7SpeakerSection className='mt-[1.5rem] md:mt-[2rem] xl:mt-[3rem]' />
+      <Yx1EarphonesSection className='mt-[1.5rem] md:mt-[2rem] xl:mt-[3rem]' />
+      <AudioGearSection className='mt-[7.5rem] md:mt-[6rem] xl:mt-[12.5rem]' />
+    </main>
   );
 }

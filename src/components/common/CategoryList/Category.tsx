@@ -21,6 +21,7 @@ export default function Category({
           className='absolute top-[-26%] h-[8rem] w-auto'
           src={thumbnail}
           alt={`${name} Thumbnail`}
+          loading='lazy'
         />
         <p className='pt-[4.5rem] text-center text-base font-bold uppercase tracking-[0.06694rem]'>
           {name}

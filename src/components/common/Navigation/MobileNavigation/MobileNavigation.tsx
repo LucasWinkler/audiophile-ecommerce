@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import CategoryList from '../../CategoryList/CategoryList';
+import CategoryList from '../../CategorySection/CategoryList/CategoryList';
 import Container from '@/components/common/Container';
 
 type MobileNavigationProps = {
