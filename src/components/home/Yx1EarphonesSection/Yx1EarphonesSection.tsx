@@ -42,13 +42,11 @@ export default function Yx1EarphonesSection({
             loading='lazy'
           />
         </div>
-        <div className='bg-neutral-400 lg:w-1/2'>
-          <div className='flex h-full max-h-[12.5rem] min-h-[12.5rem] w-full flex-col items-start justify-center gap-8 overflow-hidden rounded-lg p-6 lg:max-h-[20rem] lg:min-h-[20rem] lg:p-[2.56rem] xl:p-[5.94rem]'>
-            <h4 className='text-2xl font-bold uppercase text-neutral-900'>
-              Yx1 earphones
-            </h4>
-            <Button intent='secondary'>See product</Button>
-          </div>
+        <div className='flex h-full max-h-[12.5rem] min-h-[12.5rem] w-full flex-col items-start justify-center gap-8 overflow-hidden rounded-lg bg-neutral-400 p-6 lg:max-h-[20rem] lg:min-h-[20rem] lg:w-1/2 lg:p-[2.56rem] xl:p-[5.94rem]'>
+          <h4 className='text-2xl font-bold uppercase text-neutral-900'>
+            Yx1 earphones
+          </h4>
+          <Button intent='secondary'>See product</Button>
         </div>
       </Container>
     </section>
