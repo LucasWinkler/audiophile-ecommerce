@@ -16,7 +16,9 @@ export default function Zx7SpeakerSection({
     <section className={twJoin('', className)}>
       <Container className='relative overflow-hidden rounded-lg'>
         <div className='flex h-full max-h-[20rem] min-h-[20rem] w-full flex-col items-start justify-center gap-8 p-6 md:p-[3.875rem]'>
-          <h4>Zx7 speaker</h4>
+          <h4 className='text-2xl font-bold uppercase text-neutral-900'>
+            Zx7 speaker
+          </h4>
           <Button intent='secondary'>See product</Button>
           <img
             className='absolute left-0 top-0 z-[-1] h-full w-full object-cover md:hidden'
