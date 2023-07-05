@@ -6,11 +6,11 @@ import heroDesktop from '@/assets/home/desktop/image-hero.jpg';
 import heroTablet from '@/assets/home/tablet/image-header.jpg';
 import heroMobile from '@/assets/home/mobile/image-header.jpg';
 
-type HeroSectionProps = {
+type HomeHeroSectionProps = {
   className?: string;
 };
 
-export default function HeroSection({ className }: HeroSectionProps) {
+export default function HomeHeroSection({ className }: HomeHeroSectionProps) {
   return (
     <section className={twJoin('relative', className)}>
       <img
