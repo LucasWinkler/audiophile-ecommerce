@@ -36,9 +36,9 @@ export default function HomeHeroSection({ className }: HomeHeroSectionProps) {
       />
       <Container>
         <div className='flex flex-col items-center justify-center xl:items-start'>
-          <p className='text-sm uppercase text-neutral-100 opacity-50'>
+          <span className='text-sm uppercase text-neutral-100 opacity-50'>
             New product
-          </p>
+          </span>
           <h1 className='mt-[1rem] max-w-[20.5rem] text-center text-[2.25rem] font-bold uppercase leading-[2.5rem] tracking-[0.08038rem] text-neutral-100 lg:mt-[1.5rem] lg:max-w-[28.6875rem] lg:text-[3.5rem] lg:leading-[3.625rem] lg:tracking-[0.125rem] xl:text-left'>
             XX99 Mark II Headphones
           </h1>

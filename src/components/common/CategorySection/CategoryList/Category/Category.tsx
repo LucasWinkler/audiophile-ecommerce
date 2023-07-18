@@ -23,9 +23,9 @@ export default function Category({
           alt={`${name} Thumbnail`}
           loading='lazy'
         />
-        <p className='pt-[4.5rem] text-center text-base font-bold uppercase tracking-[0.06694rem] text-neutral-900 xl:text-lg'>
+        <h2 className='pt-[4.5rem] text-center text-base font-bold uppercase tracking-[0.06694rem] text-neutral-900 xl:text-lg'>
           {name}
-        </p>
+        </h2>
         <Button
           intent='simple'
           className='pt-2 before:absolute before:inset-0 before:block'
