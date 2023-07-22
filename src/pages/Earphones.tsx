@@ -11,8 +11,10 @@ export default function Earphones() {
           </h1>
         </div>
       </div>
-      <CategorySection className='mt-[7.5rem] md:mt-[7.5rem] xl:mt-[10rem]' />
-      <AudioGearSection className='my-[7.5rem] md:my-[7.5rem] xl:my-[10rem]' />
+      <main className='pb-[7.5rem] md:pb-[6rem] xl:pb-[10rem]'>
+        <CategorySection className='mt-[7.5rem] md:mt-[7.5rem] xl:mt-[10rem]' />
+        <AudioGearSection className='mt-[7.5rem] md:mt-[7.5rem] xl:mt-[10rem]' />
+      </main>
     </section>
   );
 }
