@@ -1,4 +1,3 @@
-import ProductList from '@/components/categories/ProductSection/ProductList/ProductList';
 import ProductSection from '@/components/categories/ProductSection/ProductSection';
 import AudioGearSection from '@/components/common/AudioGearSection/AudioGearSection';
 import CategorySection from '@/components/common/CategorySection/CategorySection';
