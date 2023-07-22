@@ -12,3 +12,38 @@ export type Category = {
 export type IconProps = {
   className?: string;
 };
+
+export type Products = Product[];
+
+export interface ImageUrls {
+  mobile: string;
+  tablet: string;
+  desktop: string;
+}
+
+export interface Product {
+  id: number;
+  slug: string;
+  name: string;
+  image: ImageUrls;
+  category: string;
+  categoryImage: ImageUrls;
+  new: boolean;
+  price: number;
+  description: string;
+  features: string;
+  includes: {
+    quantity: number;
+    item: string;
+  }[];
+  gallery: {
+    first: ImageUrls;
+    second: ImageUrls;
+    third: ImageUrls;
+  };
+  others: {
+    slug: string;
+    name: string;
+    image: ImageUrls;
+  }[];
+}
