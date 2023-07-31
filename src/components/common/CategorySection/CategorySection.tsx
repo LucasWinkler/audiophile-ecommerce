@@ -1,5 +1,5 @@
-import Container from '@/components/common/Container';
-import CategoryList from '@/components/common/CategorySection/CategoryList/CategoryList';
+import CategoryList from "@/components/common/CategorySection/CategoryList/CategoryList";
+import Container from "@/components/common/Container";
 
 type CategorySectionProps = {
   className?: string;

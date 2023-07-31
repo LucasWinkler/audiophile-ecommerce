@@ -1,5 +1,5 @@
-import Container from '@/components/common/Container';
-import ProductList from './ProductList/ProductList';
+import Container from "@/components/common/Container";
+import ProductList from "./ProductList/ProductList";
 
 type ProductSectionProps = {
   className?: string;

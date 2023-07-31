@@ -1,4 +1,5 @@
-import HamburgerIcon from '@/assets/shared/tablet/icon-hamburger.svg';
+import HamburgerIcon from "@/assets/shared/tablet/icon-hamburger.svg";
+import Image from "next/image";
 
 type MobileNavigationButtonProps = {
   className?: string;
@@ -13,10 +14,10 @@ export default function MobileNavigationButton({
 }: MobileNavigationButtonProps) {
   return (
     <button className={className} onClick={onClick}>
-      <span className='sr-only'>
-        {isMobileMenuOpen ? 'Close' : 'Open'} navigation menu
+      <span className="sr-only">
+        {isMobileMenuOpen ? "Close" : "Open"} navigation menu
       </span>
-      <img src={HamburgerIcon} width='16' height='15' alt='Hamburger Icon' />
+      <Image src={HamburgerIcon} width="16" height="15" alt="Hamburger Icon" />
     </button>
   );
 }

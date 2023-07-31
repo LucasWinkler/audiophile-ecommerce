@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
-import AudiophileLogo from '@/assets/shared/desktop/logo.svg';
+import AudiophileLogo from "@/assets/shared/desktop/logo.svg";
+import Image from "next/image";
+import Link from "next/link";
 
 type LogoProps = {
   href?: string;
@@ -7,10 +8,16 @@ type LogoProps = {
   className?: string;
 };
 
-export default function Logo({ href = '/', onClick, className }: LogoProps) {
+export default function Logo({ href = "/", onClick, className }: LogoProps) {
   return (
-    <Link to={href} onClick={onClick} className={className}>
-      <img src={AudiophileLogo} width='143' height='25' alt='Audiophile Logo' />
+    <Link href={href} onClick={onClick} className={className}>
+      <Image
+        src={AudiophileLogo}
+        width="143"
+        height="25"
+        alt="Audiophile Logo"
+        priority
+      />
     </Link>
   );
 }

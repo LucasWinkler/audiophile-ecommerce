@@ -1,4 +1,5 @@
-import CartIcon from '@/assets/shared/desktop/icon-cart.svg';
+import CartIcon from "@/assets/shared/desktop/icon-cart.svg";
+import Image from "next/image";
 
 type CartButtonProps = {
   onClick?: () => void;
@@ -13,8 +14,8 @@ export default function CartButton({ onClick, className }: CartButtonProps) {
 
   return (
     <button onClick={handleCartButtonClick} className={className}>
-      <span className='sr-only'>Open navigation menu</span>
-      <img src={CartIcon} width='23' height='20' alt='Cart Icon' />
+      <span className="sr-only">Open navigation menu</span>
+      <Image src={CartIcon} width="23" height="20" alt="Cart Icon" priority />
     </button>
   );
 }

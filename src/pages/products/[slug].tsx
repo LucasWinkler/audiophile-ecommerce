@@ -1,0 +1,82 @@
+import ProductSection from "@/components/categories/ProductSection/ProductSection";
+import AudioGearSection from "@/components/common/AudioGearSection/AudioGearSection";
+import CategorySection from "@/components/common/CategorySection/CategorySection";
+
+// todo import data
+
+export default function Headphones({ categoryData }: any) {
+  return (
+    <>
+      <div className="bg-neutral-800 pb-[6.125rem] pt-[calc(6.125rem+var(--navigation-height))]">
+        <div className="flex flex-col items-center justify-center ">
+          <h1 className="text-center text-4xl font-bold uppercase text-neutral-100">
+            Headphones
+          </h1>
+        </div>
+      </div>
+      <main className="pb-[7.5rem] md:pb-[6rem] xl:pb-[10rem]">
+        <ProductSection className="pt-[4rem] md:pt-[7.5rem] xl:pt-[10rem]" />
+        <CategorySection className="mt-[7.5rem] md:mt-[7.5rem] xl:mt-[10rem]" />
+        <AudioGearSection className="mt-[7.5rem] md:mt-[7.5rem] xl:mt-[10rem]" />
+      </main>
+    </>
+  );
+}
+
+// export async function getPostIdList() {
+//   return [
+//     {
+//       params: {
+//         id: "1",
+//       },
+//     },
+//     {
+//       params: {
+//         id: "2",
+//       },
+//     },
+//     {
+//       params: {
+//         id: "3",
+//       },
+//     },
+//   ];
+// }
+
+// export async function getPostDetails(postId) {
+//   const dataSet = {
+//     "1": {
+//       title: "Post 1",
+//       description: "Lorem ipsum dolor sit amet...",
+//       date: "Oct 10, 2022",
+//     },
+//     "2": {
+//       title: "Post 2",
+//       description: "Lorem ipsum dolor sit amet...",
+//       date: "Oct 20, 2022",
+//     },
+//     "3": {
+//       title: "Post 3",
+//       description: "Lorem ipsum dolor sit amet...",
+//       date: "Oct 30, 2022",
+//     },
+//   };
+//   return dataSet[postId];
+// }
+
+// export async function getStaticPaths() {
+//   const paths = await getPostIdList();
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
+
+// export async function getStaticProps({ params }: any) {
+//   const postData = await getPostDetails(params.id);
+//   return {
+//     props: {
+//       postData,
+//     },
+//   };
+// }
