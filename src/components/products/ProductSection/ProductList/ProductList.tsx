@@ -1,23 +1,18 @@
-import products from "@/data/products.json";
 import { Product as ProductType } from "@/types";
 import Product from "./Product/Product";
 
-export default function ProductList() {
-  const { pathname } = window.location;
+type ProductListProps = {
+  products: ProductType[];
+};
 
-  const filteredProducts = products.filter((product) =>
-    pathname.includes(product.category),
-  );
-
-  filteredProducts.sort((_a, b) => (b.new ? 1 : -1));
-
+export default function ProductList({ products }: ProductListProps) {
   return (
     <ul
       className={
         "flex flex-col items-center justify-center gap-[7.5rem] xl:gap-[10rem]"
       }
     >
-      {filteredProducts.map((product: ProductType, index: number) => (
+      {products.map((product: ProductType, index: number) => (
         <Product
           key={product.id}
           product={product}

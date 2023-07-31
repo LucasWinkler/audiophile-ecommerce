@@ -1,6 +1,5 @@
 import Button from "@/components/common/Button/Button";
 import { Product as ProductType } from "@/types";
-import Image from "next/image";
 import { twJoin } from "tailwind-merge";
 
 type ProductProps = {
@@ -23,7 +22,7 @@ export default function Product({
       )}
     >
       <div className="order-1 w-full overflow-hidden rounded-lg xl:w-1/2">
-        <Image
+        {/* <Image
           className="h-full w-full object-cover md:hidden"
           src={product.categoryImage.mobile}
           alt={product.name}
@@ -37,7 +36,7 @@ export default function Product({
           className="hidden h-full w-full object-cover xl:block"
           src={product.categoryImage.desktop}
           alt={product.name}
-        />
+        /> */}
       </div>
       <div className="order-2 text-center lg:max-w-[35.8125rem] xl:w-1/2 xl:text-left">
         {product.new && (
