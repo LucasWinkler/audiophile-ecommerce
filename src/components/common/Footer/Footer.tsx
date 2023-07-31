@@ -25,10 +25,10 @@ export default function Footer() {
             </ul>
           </div>
           <p className="mt-12 text-center text-base opacity-50 sm:mt-8 sm:text-left lg:max-w-[33.75rem]">
-            Audiophile is an all in one stop to fulfill your audio needs. We're
-            a small team of music lovers and sound specialists who are devoted
-            to helping you get the most out of personal audio. Come and visit
-            our demo facility - we're open 7 days a week.
+            Audiophile is an all in one stop to fulfill your audio needs.
+            We&apos;re a small team of music lovers and sound specialists who
+            are devoted to helping you get the most out of personal audio. Come
+            and visit our demo facility - we&apos;re open 7 days a week.
           </p>
           <div className="mt-12 flex flex-col justify-between gap-12 sm:flex-row sm:gap-0 lg:mt-20 2xl:mt-12">
             <p className="text-center text-base font-bold opacity-50">
