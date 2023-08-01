@@ -1,19 +1,24 @@
 import Button from "@/components/common/Button/Button";
 import { Product as ProductType } from "@/types";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { twJoin } from "tailwind-merge";
 
 type ProductProps = {
   product: ProductType;
   reverseOrder?: boolean;
   className?: string;
+  priority?: boolean;
 };
 
 export default function Product({
   product,
   reverseOrder,
   className,
+  priority,
 }: ProductProps) {
+  const pathname = usePathname();
+
   return (
     <li
       className={twJoin(
@@ -29,6 +34,7 @@ export default function Product({
           alt={product.name}
           width={654}
           height={704}
+          priority={priority}
         />
         <Image
           className="hidden object-cover md:block xl:hidden"
@@ -36,6 +42,7 @@ export default function Product({
           alt={product.name}
           width={1378}
           height={704}
+          priority={priority}
         />
         <Image
           className="hidden object-cover xl:block"
@@ -43,6 +50,7 @@ export default function Product({
           alt={product.name}
           width={1080}
           height={1120}
+          priority={priority}
         />
       </div>
       <div className="order-2 text-center lg:max-w-[35.8125rem] xl:w-1/2 xl:text-left">
@@ -58,6 +66,7 @@ export default function Product({
           {product.description}
         </p>
         <Button
+          href={`${pathname}/${product.slug}`}
           intent="primary"
           className="mt-[1.5rem] md:mt-[2.44rem] lg:mt-[2.5rem]"
         >

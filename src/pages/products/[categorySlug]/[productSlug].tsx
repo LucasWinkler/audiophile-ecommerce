@@ -1,7 +1,7 @@
 import AudioGearSection from "@/components/common/AudioGearSection/AudioGearSection";
 import CategorySection from "@/components/common/CategorySection/CategorySection";
 import { Product } from "@/types";
-import { getProductDetailsBySlug, getProductList } from "@/utils/products";
+import { getProductBySlug, getProductList } from "@/utils/products";
 import Head from "next/head";
 
 type ProductProps = {
@@ -39,7 +39,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
-  const product = getProductDetailsBySlug(params.productSlug);
+  const product = getProductBySlug(params.productSlug);
 
   return {
     props: {

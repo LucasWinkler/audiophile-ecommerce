@@ -20,7 +20,9 @@ export default function Zx7SpeakerSection({
           <h2 className="text-2xl font-bold uppercase text-neutral-900">
             Zx7 speaker
           </h2>
-          <Button intent="secondary">See product</Button>
+          <Button href="/products/speakers/zx7-speaker" intent="secondary">
+            See product
+          </Button>
           <Image
             className="absolute left-0 top-0 z-[-1] h-full w-full object-cover md:hidden"
             src={zx7SpeakerMobile}

@@ -47,7 +47,9 @@ export default function Yx1EarphonesSection({
           <h2 className="text-2xl font-bold uppercase text-neutral-900">
             Yx1 earphones
           </h2>
-          <Button intent="secondary">See product</Button>
+          <Button href="/products/earphones/yx1-earphones" intent="secondary">
+            See product
+          </Button>
         </div>
       </Container>
     </section>

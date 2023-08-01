@@ -13,10 +13,14 @@ export const getProductListByCategory = (category: string) => {
   return productList;
 };
 
-export const getProductDetailsBySlug = (slug: string) => {
-  const productDetails = productData.find(
-    (product: Product) => product.slug === slug,
-  );
+export const getProductBySlug = (slug: string) => {
+  const product = productData.find((product: Product) => product.slug === slug);
 
-  return productDetails;
+  return product;
+};
+
+export const getProductById = (id: number) => {
+  const product = productData.find((product: Product) => product.id === id);
+
+  return product;
 };

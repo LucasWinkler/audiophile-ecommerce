@@ -50,7 +50,11 @@ export default function HeroSection({ className }: HeroSectionProps) {
             Experience natural, lifelike audio and exceptional build quality
             made for the passionate music enthusiast.
           </p>
-          <Button className="mt-[1.75rem] lg:mt-[2.5rem]" intent="primary">
+          <Button
+            href="/products/headphones/xx99-mark-two-headphones"
+            className="mt-[1.75rem] lg:mt-[2.5rem]"
+            intent="primary"
+          >
             See product
           </Button>
         </div>

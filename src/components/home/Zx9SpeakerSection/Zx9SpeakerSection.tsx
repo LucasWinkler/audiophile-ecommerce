@@ -52,7 +52,11 @@ export default function Zx9SpeakerSection({
               Upgrade to premium speakers that are phenomenally built to deliver
               truly remarkable sound.
             </p>
-            <Button className="mt-[1.5rem]" intent="secondary-alt">
+            <Button
+              href="/products/speakers/zx9-speaker"
+              className="mt-[1.5rem]"
+              intent="secondary-alt"
+            >
               See product
             </Button>
           </div>
