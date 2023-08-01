@@ -9,7 +9,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <Navigation />
-      <main>{children}</main>
+      {children}
       <Footer />
     </>
   );
