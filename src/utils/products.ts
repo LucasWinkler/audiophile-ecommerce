@@ -13,13 +13,10 @@ export const getProductListByCategory = (category: string) => {
   return productList;
 };
 
-export const getProductCategoryList = () => {
-  const uniqueCategories = new Set(
-    productData.map((product: Product) => product.category),
+export const getProductDetailsBySlug = (slug: string) => {
+  const productDetails = productData.find(
+    (product: Product) => product.slug === slug,
   );
-  const productCategories = Array.from(uniqueCategories).map((category) => ({
-    params: { slug: category },
-  }));
 
-  return productCategories;
+  return productDetails;
 };

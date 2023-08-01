@@ -1,19 +1,16 @@
 import AudioGearSection from "@/components/common/AudioGearSection/AudioGearSection";
 import CategorySection from "@/components/common/CategorySection/CategorySection";
 import ProductSection from "@/components/products/ProductSection/ProductSection";
-import { Product } from "@/types";
-import {
-  getProductCategoryList,
-  getProductListByCategory,
-} from "@/utils/products";
+import { Product, Products } from "@/types";
+import { getProductList, getProductListByCategory } from "@/utils/products";
 import { titleCase } from "@/utils/titleCase";
 import Head from "next/head";
 
-type ProductsProps = {
+type CategoryProps = {
   products: Product[];
 };
 
-export default function Products({ products }: ProductsProps) {
+export default function Category({ products }: CategoryProps) {
   return (
     <>
       <Head>
@@ -41,8 +38,18 @@ export default function Products({ products }: ProductsProps) {
   );
 }
 
+const getUniqueCategoriesFromProducts = (products: Products) => {
+  const uniqueCategories = new Set(products.map((product) => product.category));
+  const productCategories = Array.from(uniqueCategories).map((category) => ({
+    params: { categorySlug: category },
+  }));
+
+  return productCategories;
+};
+
 export async function getStaticPaths() {
-  const paths = getProductCategoryList();
+  const products = getProductList();
+  const paths = getUniqueCategoriesFromProducts(products);
 
   return {
     paths,
@@ -51,7 +58,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
-  const products = getProductListByCategory(params.slug);
+  const products = getProductListByCategory(params.categorySlug);
   products.sort((_a, b) => (b.new ? 1 : -1));
 
   return {
