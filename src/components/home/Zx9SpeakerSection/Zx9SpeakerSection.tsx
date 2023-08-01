@@ -17,7 +17,7 @@ export default function Zx9SpeakerSection({
   return (
     <section className={twJoin("", className)}>
       <Container>
-        <div className="flex flex-col items-center justify-center gap-[2rem] overflow-hidden rounded-lg bg-orange px-[1.5rem] py-[3.44rem] xl:flex-row xl:justify-end xl:gap-[8.64rem] xl:px-[6.15rem] xl:py-[8rem] xl:[flex:1_1_50%]">
+        <div className="flex flex-col items-center justify-center gap-[2rem] overflow-hidden rounded-lg bg-orange bg-zx9-speaker-pattern bg-cover bg-no-repeat px-[1.5rem] py-[3.44rem] [backgroundPosition:50%_-8.5rem] lg:[backgroundPosition:0rem_-10rem] xl:flex-row xl:justify-end xl:gap-[8.64rem] xl:px-[6.15rem] xl:py-[8rem] xl:[backgroundPosition:-16.5rem_-5rem] xl:[flex:1_1_50%]">
           <div className="relative max-h-[12.9375rem] max-w-[10.7655rem] lg:max-h-[14.8125rem] lg:max-w-[12.32575rem] xl:max-h-[30.8125rem] xl:w-1/2 xl:max-w-[25.63963rem] [&>img]:xl:absolute [&>img]:xl:bottom-[-18rem]">
             <Image
               className="md:hidden"

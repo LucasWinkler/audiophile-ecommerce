@@ -2,6 +2,7 @@ import defaultTheme from "tailwindcss/defaultTheme";
 import plugin from "tailwindcss/plugin";
 
 /** @type {import('tailwindcss').Config} */
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   content: ["./src/pages/**/*.{ts,tsx}", "./src/components/**/*.{ts,tsx}"],
   safelist: ["xl:list-item"],
@@ -107,6 +108,10 @@ export default {
       ],
     },
     extend: {
+      backgroundImage: {
+        "zx9-speaker-pattern":
+          'url("/assets/home/desktop/pattern-circles.svg")',
+      },
       fontFamily: {
         sans: ["Manrope", ...defaultTheme.fontFamily.sans],
       },
