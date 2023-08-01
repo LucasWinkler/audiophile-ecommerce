@@ -14,9 +14,9 @@ type ProductsProps = {
 export default function Products({ products }: ProductsProps) {
   return (
     <>
-      <div className="bg-neutral-800 pb-[6.125rem] pt-[calc(6.125rem+var(--navigation-height))]">
+      <div className="bg-neutral-800 pb-[2rem] pt-[calc(2rem+var(--navigation-height))] md:pb-[6.125rem] md:pt-[calc(6.125rem+var(--navigation-height))]">
         <div className="flex flex-col items-center justify-center ">
-          <h1 className="text-center text-4xl font-bold uppercase text-neutral-100">
+          <h1 className="text-center text-2xl font-bold uppercase leading-normal text-neutral-100 md:text-4xl md:leading-[2.75rem]">
             {products[0].category}
           </h1>
         </div>
