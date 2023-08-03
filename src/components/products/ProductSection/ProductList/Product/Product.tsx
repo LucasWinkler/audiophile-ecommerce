@@ -2,7 +2,8 @@ import Button from "@/components/common/Button/Button";
 import { Product as ProductType } from "@/types";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { twJoin } from "tailwind-merge";
 
 type ProductProps = {
@@ -89,7 +90,7 @@ export default function Product({
 }: ProductProps) {
   const [productQuantity, setProductQuantity] = useState(1);
   const pathname = usePathname();
-
+  const dynamicRoute = useRouter().asPath;
   const productPriceFormatted = product.price.toLocaleString("en-US");
 
   const handleAddToCart = () => {
@@ -101,6 +102,9 @@ export default function Product({
       setProductQuantity((prev) => prev + value);
     }
   };
+
+  // Reset quantity to 1 when changing route
+  useEffect(() => setProductQuantity(1), [dynamicRoute]);
 
   return (
     <li
