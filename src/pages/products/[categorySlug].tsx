@@ -15,7 +15,7 @@ export default function Category({ products }: CategoryProps) {
     <>
       <Head>
         <title>
-          {`${titleCase(products[0].category)} | Audiophile e-commerce website`}
+          {`${titleCase(products[0].category)} | Audiophile E-commerce`}
         </title>
       </Head>
 

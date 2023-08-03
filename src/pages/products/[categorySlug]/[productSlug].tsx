@@ -2,6 +2,7 @@ import AudioGearSection from "@/components/common/AudioGearSection/AudioGearSect
 import CategorySection from "@/components/common/CategorySection/CategorySection";
 import Container from "@/components/common/Container";
 import GoBackButton from "@/components/products/GoBackButton/GoBackButton";
+import ProductFeaturesSection from "@/components/products/ProductFeaturesSection/ProductFeaturesSection";
 import Product from "@/components/products/ProductSection/ProductList/Product/Product";
 import { Product as ProductType } from "@/types";
 import { getProductBySlug, getProductList } from "@/utils/products";
@@ -15,36 +16,29 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   return (
     <>
       <Head>
-        <title>{`${product.name} | Audiophile e-commerce website`}</title>
+        <title>{`${product.name} | Audiophile E-commerce`}</title>
       </Head>
 
       <main className="pb-[7.5rem] pt-[calc(2rem+var(--navigation-height))] md:pb-[6rem] xl:pb-[10rem] xl:pt-[calc(6.125rem+var(--navigation-height))]">
         <Container>
           <GoBackButton>Go Back</GoBackButton>
         </Container>
-        {/* Product details */}
         <section className="mt-[1.5rem] xl:mt-[3.5rem]">
           <Container>
             <Product product={product} showAddToCart />
           </Container>
         </section>
-        {/* Product features */}
-        <section className="mt-[5.5rem] md:mt-[7.5rem] xl:mt-[10rem] ">
-          <Container>
-            <div>
-              <div>Features</div>
-              <div>In the box</div>
-            </div>
-          </Container>
-        </section>
-        {/* Product showcase */}
-        <section>
+        <ProductFeaturesSection
+          className="mt-[5.5rem] md:mt-[7.5rem] xl:mt-[10rem]"
+          features={product.features}
+          includes={product.includes}
+        />
+        <section className="mt-[5.5rem] md:mt-[7.5rem] xl:mt-[10rem]">
           <Container>
             <div>Showcase</div>
           </Container>
         </section>
-        {/* You may also like */}
-        <section>
+        <section className="mt-[5.5rem] md:mt-[7.5rem] xl:mt-[10rem]">
           <Container>
             <div>
               <h2>You may also like</h2>
