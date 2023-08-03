@@ -20,7 +20,7 @@ export default function ProductsYouMayAlsoLikeSection({
   return (
     <section className={className}>
       <Container>
-        <h2 className="pt-[7.5rem] text-center text-xl uppercase leading-[2.25rem] tracking-[0.05356rem] text-neutral-900 md:text-3xl md:max-xl:basis-1/2 xl:pt-[10rem]">
+        <h2 className="text-center text-xl uppercase leading-[2.25rem] tracking-[0.05356rem] text-neutral-900 md:text-3xl md:max-xl:basis-1/2">
           You may also like
         </h2>
         <ul className="flex flex-col items-center justify-center gap-[3.5rem] pt-[2.5rem] md:pt-[3.5rem] lg:flex-row lg:gap-[0.69rem] xl:gap-[1.88rem] xl:pt-[4rem]">

@@ -36,6 +36,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           includes={product.includes}
         />
         <ProductGallerySection
+          productName={product.name}
           gallery={product.gallery}
           className="mt-[5.5rem] md:mt-[7.5rem] xl:mt-[10rem]"
         />
