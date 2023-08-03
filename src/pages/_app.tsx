@@ -26,6 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
           name="description"
           content="This is a solution by Lucas Winkler to the Audiophile e-commerce website challenge on Frontend Mentor."
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
       <Layout>
