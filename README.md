@@ -36,7 +36,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://github.com/LucasWinkler/audiophile-ecommerce/](https://github.com/LucasWinkler/audiophile-ecommerce/)
+- Solution URL: Work in progress
 - Live Site URL: [https://fem-audiophile-ecommerce.vercel.app/](https://fem-audiophile-ecommerce.vercel.app/)
 
 ## My process
