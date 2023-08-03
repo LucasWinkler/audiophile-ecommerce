@@ -24,3 +24,9 @@ export const getProductById = (id: number) => {
 
   return product;
 };
+
+export const getCategoryBySlug = (slug: string) => {
+  const product = productData.find((product: Product) => product.slug === slug);
+
+  return product?.category;
+};

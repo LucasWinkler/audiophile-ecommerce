@@ -22,7 +22,6 @@ export default function Category({
           className="absolute top-[-26%] h-[9rem] w-auto xl:h-[10rem]"
           src={thumbnail}
           alt={`${name} Thumbnail`}
-          loading="lazy"
           width={256}
           height={256}
         />

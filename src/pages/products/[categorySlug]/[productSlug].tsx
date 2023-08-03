@@ -35,8 +35,14 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           features={product.features}
           includes={product.includes}
         />
-        <ProductGallerySection className="mt-[5.5rem] md:mt-[7.5rem] xl:mt-[10rem]" />
-        <ProductsYouMayAlsoLikeSection className="mt-[5.5rem] md:mt-[7.5rem] xl:mt-[10rem]" />
+        <ProductGallerySection
+          gallery={product.gallery}
+          className="mt-[5.5rem] md:mt-[7.5rem] xl:mt-[10rem]"
+        />
+        <ProductsYouMayAlsoLikeSection
+          otherProducts={product.others}
+          className="mt-[5.5rem] md:mt-[7.5rem] xl:mt-[10rem]"
+        />
         <CategorySection className="mt-[7.5rem] md:mt-[7.5rem] xl:mt-[10rem]" />
         <AudioGearSection className="mt-[7.5rem] md:mt-[7.5rem] xl:mt-[10rem]" />
       </main>
