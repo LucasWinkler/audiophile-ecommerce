@@ -4,7 +4,6 @@ import { twJoin } from "tailwind-merge";
 import bestGearDesktop from "@/assets/shared/desktop/image-best-gear.jpg";
 import bestGearMobile from "@/assets/shared/mobile/image-best-gear.jpg";
 import bestGearTablet from "@/assets/shared/tablet/image-best-gear.jpg";
-import Image from "next/image";
 
 type AudioGearSectionProps = {
   className?: string;
@@ -15,30 +14,28 @@ export default function AudioGearSection({ className }: AudioGearSectionProps) {
     <section className={twJoin("", className)}>
       <Container className="flex flex-col items-center gap-[2.5rem] lg:gap-[3.9375rem] xl:flex-row-reverse xl:gap-[7.8125rem]">
         <div className="order-1 w-full overflow-hidden rounded-lg xl:w-1/2">
-          <Image
-            className="h-full max-h-[18.75rem] min-h-[18.75rem] w-full object-cover md:hidden lg:min-h-[20rem] xl:max-h-[36.75rem]"
-            src={bestGearMobile}
-            width="654"
-            height="600"
-            alt="YX1 Earphones"
-            loading="lazy"
-          />
-          <Image
-            className="hidden h-full max-h-[18.75rem] min-h-[18.75rem] w-full object-cover md:block lg:min-h-[20rem] xl:hidden xl:max-h-[36.75rem]"
-            src={bestGearTablet}
-            width="1378"
-            height="600"
-            alt="YX1 Earphones"
-            loading="lazy"
-          />
-          <Image
-            className="hidden h-full max-h-[18.75rem] min-h-[18.75rem] w-full object-cover lg:min-h-[20rem] xl:block xl:max-h-[36.75rem]"
-            src={bestGearDesktop}
-            width="540"
-            height="588"
-            alt="YX1 Earphones"
-            loading="lazy"
-          />
+          <picture>
+            <source
+              media="(min-width: 1024px)"
+              width={540}
+              height={588}
+              srcSet={bestGearDesktop.src}
+            />
+            <source
+              media="(min-width: 640px)"
+              width={1378}
+              height={600}
+              srcSet={bestGearTablet.src}
+            />
+            <img
+              width={654}
+              height={600}
+              className="h-full max-h-[18.75rem] min-h-[18.75rem] w-full object-cover lg:min-h-[20rem] xl:max-h-[36.75rem]"
+              loading="lazy"
+              src={bestGearMobile.src}
+              alt="Man wearing headphones"
+            />
+          </picture>
         </div>
         <div className="order-2 text-center lg:max-w-[35.8125rem] xl:w-1/2 xl:text-left">
           <h2 className="text-2xl font-bold uppercase text-neutral-900 lg:text-4xl xl:max-w-[18ch]">

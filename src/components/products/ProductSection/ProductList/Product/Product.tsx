@@ -1,6 +1,5 @@
 import Button from "@/components/common/Button/Button";
 import { Product as ProductType } from "@/types";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -22,30 +21,28 @@ type ProductImagesProps = {
 const ProductPreviewImages = ({ product, priority }: ProductImagesProps) => {
   return (
     <div className="relative order-1 overflow-hidden rounded-lg xl:w-1/2">
-      <Image
-        className="object-cover md:hidden"
-        src={product.categoryImage.mobile}
-        alt={product.name}
-        width={654}
-        height={704}
-        priority={priority}
-      />
-      <Image
-        className="hidden object-cover md:block xl:hidden"
-        src={product.categoryImage.tablet}
-        alt={product.name}
-        width={1378}
-        height={704}
-        priority={priority}
-      />
-      <Image
-        className="hidden object-cover xl:block"
-        src={product.categoryImage.desktop}
-        alt={product.name}
-        width={1080}
-        height={1120}
-        priority={priority}
-      />
+      <picture>
+        <source
+          media="(min-width: 1024px)"
+          width={1080}
+          height={1120}
+          srcSet={product.categoryImage.desktop}
+        />
+        <source
+          media="(min-width: 640px)"
+          width={1378}
+          height={704}
+          srcSet={product.categoryImage.tablet}
+        />
+        <img
+          width={654}
+          height={704}
+          className="object-cover"
+          loading={priority ? "eager" : "lazy"}
+          src={product.categoryImage.mobile}
+          alt={product.name}
+        />
+      </picture>
     </div>
   );
 };
@@ -53,30 +50,28 @@ const ProductPreviewImages = ({ product, priority }: ProductImagesProps) => {
 const ProductDetailsImages = ({ product, priority }: ProductImagesProps) => {
   return (
     <div className="relative overflow-hidden rounded-lg md:w-1/2">
-      <Image
-        className="object-cover md:hidden"
-        src={product.image.mobile}
-        alt={product.name}
-        width={654}
-        height={654}
-        priority={priority}
-      />
-      <Image
-        className="hidden object-cover md:block xl:hidden"
-        src={product.image.tablet}
-        alt={product.name}
-        width={562}
-        height={960}
-        priority={priority}
-      />
-      <Image
-        className="hidden object-cover xl:block"
-        src={product.image.desktop}
-        alt={product.name}
-        width={1080}
-        height={1120}
-        priority={priority}
-      />
+      <picture>
+        <source
+          media="(min-width: 1024px)"
+          width={1080}
+          height={1120}
+          srcSet={product.image.desktop}
+        />
+        <source
+          media="(min-width: 640px)"
+          width={562}
+          height={960}
+          srcSet={product.image.tablet}
+        />
+        <img
+          width={654}
+          height={654}
+          className="object-cover"
+          loading={priority ? "eager" : "lazy"}
+          src={product.image.mobile}
+          alt={product.name}
+        />
+      </picture>
     </div>
   );
 };

@@ -3,7 +3,6 @@ import zx7SpeakerMobile from "@/assets/home/mobile/image-speaker-zx7.jpg";
 import zx7SpeakerTablet from "@/assets/home/tablet/image-speaker-zx7.jpg";
 import Button from "@/components/common/Button/Button";
 import Container from "@/components/common/Container";
-import Image from "next/image";
 import { twJoin } from "tailwind-merge";
 
 type Zx7SpeakerSectionProps = {
@@ -23,30 +22,28 @@ export default function Zx7SpeakerSection({
           <Button href="/products/speakers/zx7-speaker" intent="secondary">
             See product
           </Button>
-          <Image
-            className="absolute left-0 top-0 z-[-1] h-full w-full object-cover md:hidden"
-            src={zx7SpeakerMobile}
-            width="654"
-            height="640"
-            alt="ZX7 Speaker"
-            loading="lazy"
-          />
-          <Image
-            className="absolute left-0 top-0 z-[-1] hidden h-full w-full object-cover md:block xl:hidden"
-            src={zx7SpeakerTablet}
-            width="689"
-            height="320"
-            alt="ZX7 Speaker"
-            loading="lazy"
-          />
-          <Image
-            className="absolute left-0 top-0 z-[-1] hidden h-full w-full object-cover xl:block"
-            src={zx7SpeakerDesktop}
-            width="1110"
-            height="320"
-            alt="ZX7 Speaker"
-            loading="lazy"
-          />
+          <picture>
+            <source
+              media="(min-width: 1024px)"
+              width={1110}
+              height={320}
+              srcSet={zx7SpeakerDesktop.src}
+            />
+            <source
+              media="(min-width: 640px)"
+              width={689}
+              height={320}
+              srcSet={zx7SpeakerTablet.src}
+            />
+            <img
+              width={654}
+              height={640}
+              className="absolute left-0 top-0 z-[-1] h-full w-full object-cover"
+              loading="lazy"
+              src={zx7SpeakerMobile.src}
+              alt="ZX7 Speaker"
+            />
+          </picture>
         </div>
       </Container>
     </section>

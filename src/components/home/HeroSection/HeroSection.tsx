@@ -5,7 +5,6 @@ import { twJoin } from "tailwind-merge";
 import heroDesktop from "@/assets/home/desktop/image-hero.jpg";
 import heroMobile from "@/assets/home/mobile/image-header.jpg";
 import heroTablet from "@/assets/home/tablet/image-header.jpg";
-import Image from "next/image";
 
 type HeroSectionProps = {
   className?: string;
@@ -14,30 +13,28 @@ type HeroSectionProps = {
 export default function HeroSection({ className }: HeroSectionProps) {
   return (
     <section className={twJoin("relative", className)}>
-      <Image
-        className="absolute left-0 top-0 z-[-1] h-full w-full object-cover md:hidden"
-        src={heroMobile}
-        width="650"
-        height="1200"
-        alt=""
-        priority
-      />
-      <Image
-        className="absolute left-0 top-0 z-[-1] hidden h-full w-full object-cover md:block xl:hidden"
-        src={heroTablet}
-        width="1536"
-        height="1458"
-        alt=""
-        priority
-      />
-      <Image
-        className="absolute left-0 top-0 z-[-1] hidden h-full w-full object-cover xl:block"
-        src={heroDesktop}
-        width="2880"
-        height="1458"
-        alt=""
-        priority
-      />
+      <picture>
+        <source
+          media="(min-width: 1024px)"
+          width={2880}
+          height={1458}
+          srcSet={heroDesktop.src}
+        />
+        <source
+          media="(min-width: 640px)"
+          width={1536}
+          height={1458}
+          srcSet={heroTablet.src}
+        />
+        <img
+          width={650}
+          height={1200}
+          className="absolute left-0 top-0 z-[-1] h-full w-full object-cover"
+          loading="eager"
+          src={heroMobile.src}
+          alt=""
+        />
+      </picture>
       <Container>
         <div className="flex flex-col items-center justify-center xl:items-start">
           <span className="text-sm uppercase text-neutral-100 opacity-50">
