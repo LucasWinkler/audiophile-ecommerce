@@ -150,14 +150,14 @@ export default function Product({
             <div className="mt-[1.94rem] flex flex-row flex-wrap items-center gap-[1rem] lg:mt-[2.94rem]">
               <div className="flex h-[3rem] w-[7.5rem] items-center justify-between bg-neutral-400 text-[0.8125rem] font-bold">
                 <button
-                  className="h-full basis-1/3 text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange"
+                  className="h-full basis-1/3 text-[1rem] text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange"
                   onClick={() => handleChangeQuantity(-1)}
                 >
                   -
                 </button>
                 <span className="text-neutral-900">{productQuantity}</span>
                 <button
-                  className="h-full basis-1/3 text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange"
+                  className="h-full basis-1/3 text-[1rem] text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange"
                   onClick={() => handleChangeQuantity(+1)}
                 >
                   +
