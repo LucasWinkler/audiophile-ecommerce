@@ -37,8 +37,8 @@ export default function Footer() {
             <ul className="flex items-center justify-center gap-4 [&>li>a:hover]:text-orange [&>li>a]:cursor-pointer [&>li>a]:text-neutral-100 [&>li>a]:transition-colors [&>li>a]:duration-300">
               <li>
                 <a
-                  href="https://www.facebook.com/"
-                  aria-label="Facebook"
+                  href="https://www.facebook.com/frontendmentor/"
+                  aria-label="Frontend Mentor Facebook"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -47,8 +47,8 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://twitter.com/"
-                  aria-label="Twitter"
+                  href="https://twitter.com/frontendmentor/"
+                  aria-label="Frontend Mentor Facebook"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -57,8 +57,8 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://www.instagram.com/"
-                  aria-label="Instagram"
+                  href="https://www.instagram.com/frontendmentor/"
+                  aria-label="Frontend Mentor Facebook"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

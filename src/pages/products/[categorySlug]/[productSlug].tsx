@@ -3,7 +3,9 @@ import CategorySection from "@/components/common/CategorySection/CategorySection
 import Container from "@/components/common/Container";
 import GoBackButton from "@/components/products/GoBackButton/GoBackButton";
 import ProductFeaturesSection from "@/components/products/ProductFeaturesSection/ProductFeaturesSection";
+import ProductGallerySection from "@/components/products/ProductGallerySection/ProductGallerySection";
 import Product from "@/components/products/ProductSection/ProductList/Product/Product";
+import ProductsYouMayAlsoLikeSection from "@/components/products/ProductsYouMayAlsoLikeSection/ProductsYouMayAlsoLikeSection";
 import { Product as ProductType } from "@/types";
 import { getProductBySlug, getProductList } from "@/utils/products";
 import Head from "next/head";
@@ -33,23 +35,8 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           features={product.features}
           includes={product.includes}
         />
-        <section className="mt-[5.5rem] md:mt-[7.5rem] xl:mt-[10rem]">
-          <Container>
-            <div>Showcase</div>
-          </Container>
-        </section>
-        <section className="mt-[5.5rem] md:mt-[7.5rem] xl:mt-[10rem]">
-          <Container>
-            <div>
-              <h2>You may also like</h2>
-              <div>
-                <div>Product 1</div>
-                <div>Product 2</div>
-                <div>Product 3</div>
-              </div>
-            </div>
-          </Container>
-        </section>
+        <ProductGallerySection className="mt-[5.5rem] md:mt-[7.5rem] xl:mt-[10rem]" />
+        <ProductsYouMayAlsoLikeSection className="mt-[5.5rem] md:mt-[7.5rem] xl:mt-[10rem]" />
         <CategorySection className="mt-[7.5rem] md:mt-[7.5rem] xl:mt-[10rem]" />
         <AudioGearSection className="mt-[7.5rem] md:mt-[7.5rem] xl:mt-[10rem]" />
       </main>
