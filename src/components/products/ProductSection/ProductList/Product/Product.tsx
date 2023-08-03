@@ -2,6 +2,7 @@ import Button from "@/components/common/Button/Button";
 import { Product as ProductType } from "@/types";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { twJoin } from "tailwind-merge";
 
 type ProductProps = {
@@ -9,6 +10,74 @@ type ProductProps = {
   reverseOrder?: boolean;
   className?: string;
   priority?: boolean;
+  showAddToCart?: boolean;
+};
+
+type ProductImagesProps = {
+  product: ProductType;
+  priority?: boolean;
+};
+
+const ProductPreviewImages = ({ product, priority }: ProductImagesProps) => {
+  return (
+    <div className="relative order-1 overflow-hidden rounded-lg xl:w-1/2">
+      <Image
+        className="object-cover md:hidden"
+        src={product.categoryImage.mobile}
+        alt={product.name}
+        width={654}
+        height={704}
+        priority={priority}
+      />
+      <Image
+        className="hidden object-cover md:block xl:hidden"
+        src={product.categoryImage.tablet}
+        alt={product.name}
+        width={1378}
+        height={704}
+        priority={priority}
+      />
+      <Image
+        className="hidden object-cover xl:block"
+        src={product.categoryImage.desktop}
+        alt={product.name}
+        width={1080}
+        height={1120}
+        priority={priority}
+      />
+    </div>
+  );
+};
+
+const ProductDetailsImages = ({ product, priority }: ProductImagesProps) => {
+  return (
+    <div className="relative overflow-hidden rounded-lg md:w-1/2">
+      <Image
+        className="object-cover md:hidden"
+        src={product.image.mobile}
+        alt={product.name}
+        width={654}
+        height={654}
+        priority={priority}
+      />
+      <Image
+        className="hidden object-cover md:block xl:hidden"
+        src={product.image.tablet}
+        alt={product.name}
+        width={562}
+        height={960}
+        priority={priority}
+      />
+      <Image
+        className="hidden object-cover xl:block"
+        src={product.image.desktop}
+        alt={product.name}
+        width={1080}
+        height={1120}
+        priority={priority}
+      />
+    </div>
+  );
 };
 
 export default function Product({
@@ -16,62 +85,98 @@ export default function Product({
   reverseOrder,
   className,
   priority,
+  showAddToCart,
 }: ProductProps) {
+  const [productQuantity, setProductQuantity] = useState(1);
   const pathname = usePathname();
+
+  const productPriceFormatted = product.price.toLocaleString("en-US");
+
+  const handleAddToCart = () => {
+    console.log("Product id:", product.id, "Quantity:", productQuantity);
+  };
+
+  const handleChangeQuantity = (value: number) => {
+    if (productQuantity + value > 0) {
+      setProductQuantity((prev) => prev + value);
+    }
+  };
 
   return (
     <li
       className={twJoin(
-        "flex flex-col items-center gap-[2rem] lg:gap-[3.25rem] xl:gap-[7.8125rem]",
-        reverseOrder ? "xl:flex-row-reverse" : "xl:flex-row",
+        "flex flex-col items-center gap-[2rem] xl:gap-[7.8125rem]",
+        showAddToCart
+          ? "md:flex-row md:gap-[4.34rem]"
+          : !showAddToCart && reverseOrder
+          ? "xl:flex-row-reverse"
+          : "xl:flex-row",
+        !showAddToCart && "lg:gap-[3.25rem]",
         className,
       )}
     >
-      <div className="relative order-1 overflow-hidden rounded-lg xl:w-1/2">
-        <Image
-          className="object-cover md:hidden"
-          src={product.categoryImage.mobile}
-          alt={product.name}
-          width={654}
-          height={704}
-          priority={priority}
-        />
-        <Image
-          className="hidden object-cover md:block xl:hidden"
-          src={product.categoryImage.tablet}
-          alt={product.name}
-          width={1378}
-          height={704}
-          priority={priority}
-        />
-        <Image
-          className="hidden object-cover xl:block"
-          src={product.categoryImage.desktop}
-          alt={product.name}
-          width={1080}
-          height={1120}
-          priority={priority}
-        />
-      </div>
-      <div className="order-2 text-center lg:max-w-[35.8125rem] xl:w-1/2 xl:text-left">
+      {showAddToCart ? (
+        <ProductDetailsImages product={product} priority={true} />
+      ) : (
+        <ProductPreviewImages product={product} priority={priority} />
+      )}
+      <div
+        className={twJoin(
+          "order-2 lg:max-w-[35.8125rem] xl:text-left",
+          showAddToCart ? "md:w-1/2" : "text-center xl:w-1/2",
+        )}
+      >
         {product.new && (
           <span className="mb-[1.5rem] block text-sm uppercase leading-normal text-orange md:mb-[1rem] xl:mb-[1rem]">
             New product
           </span>
         )}
-        <h2 className="mx-auto max-w-[15ch] text-2xl font-bold uppercase text-neutral-900 lg:text-4xl xl:mx-0">
+        <h2
+          className={twJoin(
+            "max-w-[15ch] text-2xl font-bold uppercase text-neutral-900 lg:text-4xl xl:mx-0",
+            !showAddToCart && "mx-auto",
+          )}
+        >
           {product.name}
         </h2>
         <p className="mt-[1.5rem] text-base opacity-50 md:mt-[2rem]">
           {product.description}
         </p>
-        <Button
-          href={`${pathname}/${product.slug}`}
-          intent="primary"
-          className="mt-[1.5rem] md:mt-[2.44rem] lg:mt-[2.5rem]"
-        >
-          See product
-        </Button>
+        {showAddToCart ? (
+          <>
+            <p className="mt-[1.5rem] text-lg text-neutral-900 md:mt-[2rem]">
+              $ {productPriceFormatted}
+            </p>
+            <div className="mt-[1.94rem] flex flex-row flex-wrap items-center gap-[1rem] lg:mt-[2.94rem]">
+              <div className="flex h-[3rem] w-[7.5rem] items-center justify-between bg-neutral-400 text-[0.8125rem] font-bold">
+                <button
+                  className="h-full basis-1/3 text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange"
+                  onClick={() => handleChangeQuantity(-1)}
+                >
+                  -
+                </button>
+                <span className="text-neutral-900">{productQuantity}</span>
+                <button
+                  className="h-full basis-1/3 text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange"
+                  onClick={() => handleChangeQuantity(+1)}
+                >
+                  +
+                </button>
+              </div>
+              <Button onClick={handleAddToCart} intent="primary" className="">
+                Add to cart
+              </Button>
+            </div>
+          </>
+        ) : (
+          <Button
+            href={`${pathname}/${product.slug}`}
+            intent="primary"
+            className="mt-[1.5rem] md:mt-[2.44rem] lg:mt-[2.5rem]"
+          >
+            See product
+          </Button>
+        )}
       </div>
     </li>
   );

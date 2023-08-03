@@ -15,7 +15,7 @@ type ButtonProps = VariantProps<typeof buttonVariants> & {
 const buttonVariants = cva(
   [
     "[--padding-x:1.9rem]",
-    "[--padding-y:0.94rem]",
+    "[--padding-y:0.72rem]",
     "inline-block",
     "cursor-pointer",
     "select-none",

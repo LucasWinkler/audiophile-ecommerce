@@ -2,36 +2,34 @@ import AudioGearSection from "@/components/common/AudioGearSection/AudioGearSect
 import CategorySection from "@/components/common/CategorySection/CategorySection";
 import Container from "@/components/common/Container";
 import GoBackButton from "@/components/products/GoBackButton/GoBackButton";
-import { Product } from "@/types";
+import Product from "@/components/products/ProductSection/ProductList/Product/Product";
+import { Product as ProductType } from "@/types";
 import { getProductBySlug, getProductList } from "@/utils/products";
 import Head from "next/head";
 
-type ProductProps = {
-  product: Product;
+type ProductDetailsProps = {
+  product: ProductType;
 };
 
-export default function Product({ product }: ProductProps) {
+export default function ProductDetails({ product }: ProductDetailsProps) {
   return (
     <>
       <Head>
         <title>{`${product.name} | Audiophile e-commerce website`}</title>
       </Head>
 
-      <main className="pb-[7.5rem] pt-[calc(2rem+var(--navigation-height))] md:pb-[6rem] md:pt-[calc(6.125rem+var(--navigation-height))] xl:pb-[10rem]">
+      <main className="pb-[7.5rem] pt-[calc(2rem+var(--navigation-height))] md:pb-[6rem] xl:pb-[10rem] xl:pt-[calc(6.125rem+var(--navigation-height))]">
         <Container>
           <GoBackButton>Go Back</GoBackButton>
         </Container>
         {/* Product details */}
-        <section>
+        <section className="mt-[1.5rem] xl:mt-[3.5rem]">
           <Container>
-            <div className="flex gap-4">
-              <div>Image</div>
-              <div>Product</div>
-            </div>
+            <Product product={product} showAddToCart />
           </Container>
         </section>
         {/* Product features */}
-        <section>
+        <section className="mt-[5.5rem] md:mt-[7.5rem] xl:mt-[10rem] ">
           <Container>
             <div>
               <div>Features</div>
@@ -51,7 +49,9 @@ export default function Product({ product }: ProductProps) {
             <div>
               <h2>You may also like</h2>
               <div>
-                <div>Product</div>
+                <div>Product 1</div>
+                <div>Product 2</div>
+                <div>Product 3</div>
               </div>
             </div>
           </Container>
