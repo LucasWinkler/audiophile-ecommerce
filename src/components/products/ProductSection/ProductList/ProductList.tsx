@@ -17,7 +17,7 @@ export default function ProductList({ products }: ProductListProps) {
           key={product.id}
           product={product}
           reverseOrder={index % 2 !== 0}
-          priority={index < 2}
+          priority={index === 0}
         />
       ))}
     </ul>
