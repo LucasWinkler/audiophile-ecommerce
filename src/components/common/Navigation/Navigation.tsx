@@ -45,6 +45,15 @@ export default function Navigation() {
 
   const handleToggleMobileMenu = () => {
     setIsMobileMenuOpen((prevState) => !prevState);
+    handleCloseCart();
+  };
+
+  const handleCartButtonClick = () => {
+    setIsCartOpen((prevState) => !prevState);
+  };
+
+  const handleCloseCart = () => {
+    setIsCartOpen(false);
   };
 
   const handleEscapePressed = useCallback((event: KeyboardEvent) => {
@@ -130,15 +139,28 @@ export default function Navigation() {
               />
             </div>
             <div className="xl:flex xl:flex-grow xl:basis-0">
-              <Logo onClick={handleCloseMobileMenu} />
+              <Logo
+                onClick={() => {
+                  handleCloseMobileMenu();
+                  handleCloseCart();
+                }}
+              />
             </div>
             {isMobileMenuOpen ? (
-              <MobileNavigation handleCloseMobileMenu={handleCloseMobileMenu} />
+              <MobileNavigation
+                onCategoryClick={() => {
+                  handleCloseMobileMenu();
+                  handleCloseCart();
+                }}
+              />
             ) : (
-              <DesktopNavigation navigationLinks={desktopNavigationLinks} />
+              <DesktopNavigation
+                handleCloseCart={handleCloseCart}
+                navigationLinks={desktopNavigationLinks}
+              />
             )}
             <div className="flex flex-grow basis-0 items-center justify-end">
-              <CartButton setIsCartOpen={setIsCartOpen} />
+              <CartButton handleCartButtonClick={handleCartButtonClick} />
               <Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
             </div>
           </div>

@@ -3,11 +3,11 @@ import { useEffect } from "react";
 import CategoryList from "../../CategorySection/CategoryList/CategoryList";
 
 type MobileNavigationProps = {
-  handleCloseMobileMenu: () => void;
+  onCategoryClick: () => void;
 };
 
 export default function MobileNavigation({
-  handleCloseMobileMenu,
+  onCategoryClick,
 }: MobileNavigationProps) {
   useEffect(() => {
     const handleResize = () => {
@@ -28,7 +28,7 @@ export default function MobileNavigation({
   return (
     <nav
       className="absolute left-0 right-0 top-[calc(var(--navigation-height)+1px)] z-10 block overflow-y-auto overflow-x-hidden"
-      onClick={handleCloseMobileMenu}
+      onClick={onCategoryClick}
     >
       <div className="fixed inset-0 top-navigation-height h-full w-full bg-neutral-900 opacity-50 xl:hidden"></div>
       <div
@@ -38,7 +38,7 @@ export default function MobileNavigation({
         }
       >
         <Container className="mt-9">
-          <CategoryList onCategoryClick={handleCloseMobileMenu} />
+          <CategoryList onCategoryClick={onCategoryClick} />
         </Container>
       </div>
     </nav>

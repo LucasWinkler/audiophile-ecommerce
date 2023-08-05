@@ -58,9 +58,12 @@ export default function Cart({
   return (
     <div
       onClick={handleClickOutside}
-      className={twJoin("fixed inset-0 z-[10] h-full w-full", className)}
+      className={twJoin(
+        "fixed bottom-0 left-0 z-[5] h-[calc(100%-var(--navigation-height))] w-full",
+        className,
+      )}
     >
-      <div className="fixed inset-0 h-full w-full bg-neutral-900/40"></div>
+      <div className="fixed bottom-0 left-0 h-[calc(100%-var(--navigation-height))] w-full bg-neutral-900/40"></div>
       <div className="fixed top-[calc(2rem+var(--navigation-height))] w-full">
         <Container>
           <div
