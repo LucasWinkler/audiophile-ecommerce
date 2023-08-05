@@ -61,11 +61,11 @@ export default function Cart({
       className={twJoin("fixed inset-0 z-[10] h-full w-full", className)}
     >
       <div className="fixed inset-0 h-full w-full bg-neutral-900/40"></div>
-      <div className="fixed left-0 top-[calc(2rem+var(--navigation-height))] w-full lg:left-auto lg:right-0 lg:w-auto">
+      <div className="fixed top-[calc(2rem+var(--navigation-height))] w-full">
         <Container>
           <div
             onClick={(e) => e.stopPropagation()}
-            className="inline-block w-full overflow-hidden rounded-lg bg-neutral-100 p-[2rem] lg:w-auto"
+            className="w-full overflow-hidden rounded-lg bg-neutral-100 p-[2rem] lg:ml-auto lg:w-fit"
           >
             <div className="flex justify-between gap-1">
               <p className="text-lg font-bold uppercase text-neutral-900">
