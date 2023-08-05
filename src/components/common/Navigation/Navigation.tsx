@@ -11,6 +11,7 @@ import MobileNavigation from "./MobileNavigation/MobileNavigation";
 import MobileNavigationButton from "./MobileNavigation/MobileNavigationButton/MobileNavigationButton";
 
 import { usePathname } from "next/navigation";
+import Cart from "../Cart/Cart";
 
 const fullConfig = resolveConfig(tailwindConfig);
 const screens = fullConfig?.theme?.screens as { [key: string]: string };
@@ -19,6 +20,7 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isNavigationTransparent, setIsNavigationTransparent] = useState(true);
   const [navigationHeightInPixels, setNavigationHeightInPixels] = useState(0);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
@@ -136,7 +138,8 @@ export default function Navigation() {
               <DesktopNavigation navigationLinks={desktopNavigationLinks} />
             )}
             <div className="flex flex-grow basis-0 items-center justify-end">
-              <CartButton onClick={handleCloseMobileMenu} />
+              <CartButton setIsCartOpen={setIsCartOpen} />
+              <Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
             </div>
           </div>
         </div>

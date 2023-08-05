@@ -2,14 +2,16 @@ import CartIcon from "@/assets/shared/desktop/icon-cart.svg";
 import Image from "next/image";
 
 type CartButtonProps = {
-  onClick?: () => void;
+  setIsCartOpen: (value: boolean) => void;
   className?: string;
 };
 
-export default function CartButton({ onClick, className }: CartButtonProps) {
-  // TODO: Open cart modal
+export default function CartButton({
+  setIsCartOpen,
+  className,
+}: CartButtonProps) {
   const handleCartButtonClick = () => {
-    onClick?.();
+    setIsCartOpen(true);
   };
 
   return (
