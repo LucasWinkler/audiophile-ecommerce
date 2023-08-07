@@ -47,3 +47,14 @@ export interface Product {
     image: ImageUrls;
   }[];
 }
+
+export interface CartProduct {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  quantity: number;
+}
+
+// Type for the cart (an array of CartProduct)
+export type Cart = CartProduct[];

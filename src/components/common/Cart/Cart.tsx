@@ -1,7 +1,15 @@
-import { useEffect } from "react";
-import { twJoin } from "tailwind-merge";
+import { CartProduct, Product } from "@/types";
+import { getProductList } from "@/utils/products";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { twJoin, twMerge } from "tailwind-merge";
 import Button from "../Button/Button";
 import Container from "../Container";
+
+type LocalStorageCart = {
+  id: number;
+  quantity: number;
+};
 
 type CartProps = {
   isCartOpen: boolean;
@@ -14,8 +22,63 @@ export default function Cart({
   setIsCartOpen,
   className,
 }: CartProps) {
+  const [cart, setCart] = useState<CartProduct[]>([]);
+  const [cartTotal, setCartTotal] = useState(0);
+  const router = useRouter();
+
   const handleClickOutside = () => {
     setIsCartOpen(false);
+  };
+
+  const convertToCartProduct = (
+    product: Product,
+    quantity: number,
+  ): CartProduct => {
+    return {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image.mobile,
+      quantity: quantity,
+    };
+  };
+
+  const getCartFromLocalStorage = () => {
+    if (typeof window !== "undefined") {
+      const cartData = localStorage.getItem("cart");
+      if (cartData) {
+        return JSON.parse(cartData) as LocalStorageCart[];
+      }
+    }
+
+    return [];
+  };
+
+  useEffect(() => {
+    const cartData = getCartFromLocalStorage();
+    const products = getProductList();
+
+    const cartProducts = cartData.reduce((acc, cartProduct) => {
+      const product = products.find((product) => product.id === cartProduct.id);
+      if (product) {
+        acc.push(convertToCartProduct(product, cartProduct.quantity));
+      }
+      return acc;
+    }, [] as CartProduct[]);
+
+    setCart(cartProducts);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart]);
+
+  const getCartTotal = () => {
+    return cart.reduce((sum, item) => {
+      return sum + item.price * item.quantity;
+    }, 0);
   };
 
   useEffect(() => {
@@ -72,78 +135,75 @@ export default function Cart({
           >
             <div className="flex justify-between gap-1">
               <p className="text-lg font-bold uppercase text-neutral-900">
-                Cart (3)
+                Cart ({cart.length})
               </p>
-              <button className="text-base text-neutral-900/50 underline hover:text-orange focus:text-orange">
-                Remove all
-              </button>
+              {cart.length > 0 && (
+                <button className="text-base text-neutral-900/50 underline hover:text-orange focus:text-orange">
+                  Remove all
+                </button>
+              )}
             </div>
-            <div className="mt-[2rem] space-y-[1.5rem]">
-              <ul className="space-y-[1.5rem]">
-                <li className="flex items-center justify-between gap-[1rem]">
-                  <div className="h-[4rem] w-[4rem] rounded-lg bg-neutral-400"></div>
-                  <div className="mr-auto flex flex-col">
-                    <span className="text-base font-bold">XX99 MK II</span>
-                    <span className="text-sm font-bold leading-[1.5625rem] tracking-normal text-neutral-900/50">
-                      $ 2,999
-                    </span>
-                  </div>
-                  <div className="flex h-[2rem] w-[6rem] items-center justify-between bg-neutral-400 text-[0.8125rem] font-bold">
-                    <button className="h-full basis-1/3 text-[1rem] text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange">
-                      -
-                    </button>
-                    <span className="text-neutral-900">1</span>
-                    <button className="h-full basis-1/3 text-[1rem] text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange">
-                      +
-                    </button>
-                  </div>
-                </li>
-                <li className="flex items-center justify-between gap-[1rem]">
-                  <div className="h-[4rem] w-[4rem] rounded-lg bg-neutral-400"></div>
-                  <div className="mr-auto flex flex-col">
-                    <span className="text-base font-bold">XX59</span>
-                    <span className="text-sm font-bold leading-[1.5625rem] tracking-normal text-neutral-900/50">
-                      $ 899
-                    </span>
-                  </div>
-                  <div className="flex h-[2rem] w-[6rem] items-center justify-between bg-neutral-400 text-[0.8125rem] font-bold">
-                    <button className="h-full basis-1/3 text-[1rem] text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange">
-                      -
-                    </button>
-                    <span className="text-neutral-900">2</span>
-                    <button className="h-full basis-1/3 text-[1rem] text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange">
-                      +
-                    </button>
-                  </div>
-                </li>
-                <li className="flex items-center justify-between gap-[1rem]">
-                  <div className="h-[4rem] w-[4rem] rounded-lg bg-neutral-400"></div>
-                  <div className="mr-auto flex flex-col">
-                    <span className="text-base font-bold">YX1</span>
-                    <span className="text-sm font-bold leading-[1.5625rem] tracking-normal text-neutral-900/50">
-                      $ 599
-                    </span>
-                  </div>
-                  <div className="flex h-[2rem] w-[6rem] items-center justify-between bg-neutral-400 text-[0.8125rem] font-bold">
-                    <button className="h-full basis-1/3 text-[1rem] text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange">
-                      -
-                    </button>
-                    <span className="text-neutral-900">1</span>
-                    <button className="h-full basis-1/3 text-[1rem] text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange">
-                      +
-                    </button>
-                  </div>
-                </li>
-              </ul>
+            <div
+              className={twMerge(
+                "mt-[2rem] space-y-[1.5rem]",
+                cart.length === 0 && "mt-[1.5rem]",
+              )}
+            >
+              {cart.length === 0 ? (
+                <p className="text-sm font-bold leading-[1.5625rem] tracking-normal text-neutral-900/50">
+                  Your cart is empty
+                </p>
+              ) : (
+                <ul>
+                  {cart.map((item) => (
+                    <li
+                      key={item.id}
+                      className="flex items-center justify-between gap-[1rem]"
+                    >
+                      <div className="h-[4rem] w-[4rem] rounded-lg bg-neutral-400"></div>
+                      <div className="mr-auto flex flex-col">
+                        <span className="text-base font-bold">XX99 MK II</span>
+                        <span className="text-sm font-bold leading-[1.5625rem] tracking-normal text-neutral-900/50">
+                          $ {item.price}
+                        </span>
+                      </div>
+                      <div className="flex h-[2rem] w-[6rem] items-center justify-between bg-neutral-400 text-[0.8125rem] font-bold">
+                        <button className="h-full basis-1/3 text-[1rem] text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange">
+                          -
+                        </button>
+                        <span className="text-neutral-900">
+                          {/* {item.quantity} */}
+                        </span>
+                        <button className="h-full basis-1/3 text-[1rem] text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange">
+                          +
+                        </button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
-            <div className="mt-[2rem] flex justify-between">
-              <span className="text-base uppercase text-neutral-900/50">
-                Total
-              </span>
-              <span className="text-lg text-neutral-900">$ 5,369</span>
-            </div>
-            <Button className="mt-[1.5rem]" fullWidth intent="primary">
-              Checkout
+            {cart.length > 0 && (
+              <div className="mt-[2rem] flex justify-between">
+                <span className="text-base uppercase text-neutral-900/50">
+                  Total
+                </span>
+                <span className="text-lg text-neutral-900">$ {cartTotal}</span>
+              </div>
+            )}
+            <Button
+              onClick={() => {
+                if (cart.length === 0) {
+                } else {
+                  router.push("/checkout");
+                }
+                setIsCartOpen(false);
+              }}
+              className="mt-[1.5rem]"
+              fullWidth
+              intent="primary"
+            >
+              {cart.length === 0 ? "Continue shopping" : "Checkout"}
             </Button>
           </div>
         </Container>
