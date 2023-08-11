@@ -1,15 +1,12 @@
-import { CartProduct, Product } from "@/types";
+import { CartProduct } from "@/types";
+import { convertToCartProduct, getCartFromLocalStorage } from "@/utils/cart";
 import { getProductList } from "@/utils/products";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 import Button from "../Button/Button";
 import Container from "../Container";
-
-type LocalStorageCart = {
-  id: number;
-  quantity: number;
-};
 
 type CartProps = {
   isCartOpen: boolean;
@@ -26,35 +23,49 @@ export default function Cart({
   const [cartTotal, setCartTotal] = useState(0);
   const router = useRouter();
 
+  const getFormattedPrice = (price: number) => {
+    console.log(price);
+
+    return price.toLocaleString("en-US");
+  };
+
   const handleClickOutside = () => {
     setIsCartOpen(false);
   };
 
-  const convertToCartProduct = (
-    product: Product,
-    quantity: number,
-  ): CartProduct => {
-    return {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image.mobile,
-      quantity: quantity,
-    };
+  const handleRemoveAllFromCart = () => {
+    setCart([]);
+    localStorage.removeItem("cart");
   };
 
-  const getCartFromLocalStorage = () => {
-    if (typeof window !== "undefined") {
-      const cartData = localStorage.getItem("cart");
-      if (cartData) {
-        return JSON.parse(cartData) as LocalStorageCart[];
-      }
-    }
-
-    return [];
+  const getShortenedProductName = (name: string) => {
+    return name.replace(/(Wireless|Headphones|Speakers|Earphones)/gi, "");
   };
 
   useEffect(() => {
+    if (isCartOpen) {
+      const cartData = getCartFromLocalStorage();
+      const products = getProductList();
+
+      const cartProducts = cartData.reduce((acc, cartProduct) => {
+        const product = products.find(
+          (product) => product.id === cartProduct.id,
+        );
+        if (product) {
+          acc.push(convertToCartProduct(product, cartProduct.quantity));
+        }
+        return acc;
+      }, [] as CartProduct[]);
+
+      setCart(cartProducts);
+    }
+  }, [isCartOpen]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
     const cartData = getCartFromLocalStorage();
     const products = getProductList();
 
@@ -70,16 +81,20 @@ export default function Cart({
   }, []);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && cart.length > 0) {
       localStorage.setItem("cart", JSON.stringify(cart));
     }
-  }, [cart]);
 
-  const getCartTotal = () => {
-    return cart.reduce((sum, item) => {
-      return sum + item.price * item.quantity;
-    }, 0);
-  };
+    const calculateCartTotal = () => {
+      setCartTotal(
+        cart.reduce((sum, item) => {
+          return sum + item.price * item.quantity;
+        }, 0),
+      );
+    };
+
+    calculateCartTotal();
+  }, [cart]);
 
   useEffect(() => {
     const html = document.querySelector("html");
@@ -138,7 +153,10 @@ export default function Cart({
                 Cart ({cart.length})
               </p>
               {cart.length > 0 && (
-                <button className="text-base text-neutral-900/50 underline hover:text-orange focus:text-orange">
+                <button
+                  onClick={handleRemoveAllFromCart}
+                  className="text-base text-neutral-900/50 underline hover:text-orange focus:text-orange"
+                >
                   Remove all
                 </button>
               )}
@@ -154,25 +172,30 @@ export default function Cart({
                   Your cart is empty
                 </p>
               ) : (
-                <ul>
+                <ul className="space-y-[1.5rem] overflow-y-auto">
                   {cart.map((item) => (
-                    <li
-                      key={item.id}
-                      className="flex items-center justify-between gap-[1rem]"
-                    >
-                      <div className="h-[4rem] w-[4rem] rounded-lg bg-neutral-400"></div>
-                      <div className="mr-auto flex flex-col">
-                        <span className="text-base font-bold">XX99 MK II</span>
-                        <span className="text-sm font-bold leading-[1.5625rem] tracking-normal text-neutral-900/50">
-                          $ {item.price}
+                    <li key={item.id} className="flex items-center  gap-[1rem]">
+                      <Image
+                        width="64"
+                        height="64"
+                        src={item.image}
+                        alt={item.name}
+                        className="rounded-lg"
+                      />
+                      <div className="mr-auto flex flex-col items-start ">
+                        <span className="text-base font-bold">
+                          {getShortenedProductName(item.name)}
+                        </span>
+                        <span className="whitespace-nowrap text-sm font-bold leading-[1.5625rem] tracking-normal text-neutral-900/50">
+                          $ {getFormattedPrice(item.price)}
                         </span>
                       </div>
-                      <div className="flex h-[2rem] w-[6rem] items-center justify-between bg-neutral-400 text-[0.8125rem] font-bold">
+                      <div className="flex h-[2rem] w-[6rem] flex-shrink-0 items-center justify-between bg-neutral-400 text-[0.8125rem] font-bold lg:ml-[4rem]">
                         <button className="h-full basis-1/3 text-[1rem] text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange">
                           -
                         </button>
                         <span className="text-neutral-900">
-                          {/* {item.quantity} */}
+                          {item.quantity}
                         </span>
                         <button className="h-full basis-1/3 text-[1rem] text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange">
                           +
@@ -188,7 +211,9 @@ export default function Cart({
                 <span className="text-base uppercase text-neutral-900/50">
                   Total
                 </span>
-                <span className="text-lg text-neutral-900">$ {cartTotal}</span>
+                <span className="text-lg text-neutral-900">
+                  $ {getFormattedPrice(cartTotal)}
+                </span>
               </div>
             )}
             <Button

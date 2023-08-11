@@ -56,5 +56,9 @@ export interface CartProduct {
   quantity: number;
 }
 
-// Type for the cart (an array of CartProduct)
 export type Cart = CartProduct[];
+
+export type LocalStorageCart = {
+  id: number;
+  quantity: number;
+};

@@ -1,5 +1,7 @@
 import Button from "@/components/common/Button/Button";
 import { Product as ProductType } from "@/types";
+import { convertToCartProduct, getCartFromLocalStorage } from "@/utils/cart";
+import { getProductList } from "@/utils/products";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -89,7 +91,26 @@ export default function Product({
   const productPriceFormatted = product.price.toLocaleString("en-US");
 
   const handleAddToCart = () => {
-    console.log("Product id:", product.id, "Quantity:", productQuantity);
+    const cartData = getCartFromLocalStorage();
+    const products = getProductList();
+
+    let updatedCart = cartData.slice();
+
+    const existingProductIndex = updatedCart.findIndex(
+      (cartProduct) => cartProduct.id === product.id,
+    );
+
+    if (existingProductIndex !== -1) {
+      updatedCart[existingProductIndex].quantity += productQuantity;
+    } else {
+      const productToAdd = products.find((p) => p.id === product.id);
+      if (productToAdd) {
+        updatedCart.push(convertToCartProduct(productToAdd, productQuantity));
+      }
+    }
+
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    setProductQuantity(1);
   };
 
   const handleChangeQuantity = (value: number) => {
