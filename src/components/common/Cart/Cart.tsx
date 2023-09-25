@@ -14,6 +14,11 @@ type CartProps = {
   className?: string;
 };
 
+enum CartItemQuantityAdjustment {
+  Increase,
+  Decrease,
+}
+
 export default function Cart({
   isCartOpen,
   setIsCartOpen,
@@ -24,8 +29,6 @@ export default function Cart({
   const router = useRouter();
 
   const getFormattedPrice = (price: number) => {
-    console.log(price);
-
     return price.toLocaleString("en-US");
   };
 
@@ -36,6 +39,25 @@ export default function Cart({
   const handleRemoveAllFromCart = () => {
     setCart([]);
     localStorage.removeItem("cart");
+  };
+  const handleAdjustCartItemQuantity = (id: number, quantity: number) => {
+    const updatedCart = cart
+      .map((item) => {
+        if (item.id === id) {
+          const newItemQuantity = item.quantity + quantity;
+
+          if (newItemQuantity >= 0) {
+            return {
+              ...item,
+              quantity: newItemQuantity,
+            };
+          }
+        }
+        return item;
+      })
+      .filter((item) => item.quantity > 0);
+
+    setCart(updatedCart);
   };
 
   const getShortenedProductName = (name: string) => {
@@ -191,13 +213,23 @@ export default function Cart({
                         </span>
                       </div>
                       <div className="flex h-[2rem] w-[6rem] flex-shrink-0 items-center justify-between bg-neutral-400 text-[0.8125rem] font-bold lg:ml-[4rem]">
-                        <button className="h-full basis-1/3 text-[1rem] text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange">
+                        <button
+                          onClick={() =>
+                            handleAdjustCartItemQuantity(item.id, -1)
+                          }
+                          className="h-full basis-1/3 text-[1rem] text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange"
+                        >
                           -
                         </button>
                         <span className="text-neutral-900">
                           {item.quantity}
                         </span>
-                        <button className="h-full basis-1/3 text-[1rem] text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange">
+                        <button
+                          onClick={() =>
+                            handleAdjustCartItemQuantity(item.id, +1)
+                          }
+                          className="h-full basis-1/3 text-[1rem] text-neutral-900/25 transition duration-300 ease-in-out hover:text-orange"
+                        >
                           +
                         </button>
                       </div>
