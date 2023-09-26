@@ -23,3 +23,13 @@ export const getCartFromLocalStorage = () => {
 
   return [];
 };
+
+export const getFormattedPrice = (price: number) => {
+  return price.toLocaleString("en-US");
+};
+
+export const getShortenedProductName = (name: string) => {
+  return name
+    .replace(/(Wireless|Headphones|Speaker|Earphones)/gi, "")
+    .replace(/Mark/gi, "MK");
+};

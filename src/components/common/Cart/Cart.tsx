@@ -1,5 +1,10 @@
 import { CartProduct } from "@/types";
-import { convertToCartProduct, getCartFromLocalStorage } from "@/utils/cart";
+import {
+  convertToCartProduct,
+  getCartFromLocalStorage,
+  getFormattedPrice,
+  getShortenedProductName,
+} from "@/utils/cart";
 import { getProductList } from "@/utils/products";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -14,11 +19,6 @@ type CartProps = {
   className?: string;
 };
 
-enum CartItemQuantityAdjustment {
-  Increase,
-  Decrease,
-}
-
 export default function Cart({
   isCartOpen,
   setIsCartOpen,
@@ -28,10 +28,6 @@ export default function Cart({
   const [cartTotal, setCartTotal] = useState(0);
   const router = useRouter();
 
-  const getFormattedPrice = (price: number) => {
-    return price.toLocaleString("en-US");
-  };
-
   const handleClickOutside = () => {
     setIsCartOpen(false);
   };
@@ -40,6 +36,7 @@ export default function Cart({
     setCart([]);
     localStorage.removeItem("cart");
   };
+
   const handleAdjustCartItemQuantity = (id: number, quantity: number) => {
     const updatedCart = cart
       .map((item) => {
@@ -58,10 +55,6 @@ export default function Cart({
       .filter((item) => item.quantity > 0);
 
     setCart(updatedCart);
-  };
-
-  const getShortenedProductName = (name: string) => {
-    return name.replace(/(Wireless|Headphones|Speakers|Earphones)/gi, "");
   };
 
   useEffect(() => {
