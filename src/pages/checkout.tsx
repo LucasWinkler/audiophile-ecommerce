@@ -18,6 +18,17 @@ export default function Checkout() {
   const [cart, setCart] = useState<CartProduct[]>([]);
   const [cartTotal, setCartTotal] = useState(0);
 
+  const SHIPPING_COST = 50;
+  const VAT_RATE = 0.2;
+
+  const calculateVatAmount = () => {
+    return (cartTotal * VAT_RATE) / 100;
+  };
+
+  const calculateGrandTotal = () => {
+    return cartTotal + SHIPPING_COST + calculateVatAmount();
+  };
+
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
@@ -36,6 +47,18 @@ export default function Checkout() {
 
     setCart(cartProducts);
   }, []);
+
+  useEffect(() => {
+    const calculateCartTotal = () => {
+      setCartTotal(
+        cart.reduce((sum, item) => {
+          return sum + item.price * item.quantity;
+        }, 0),
+      );
+    };
+
+    calculateCartTotal();
+  }, [cart]);
 
   if (!cart) {
     return (
@@ -117,19 +140,25 @@ export default function Checkout() {
                   <span className="text-base uppercase text-neutral-900/50">
                     Shipping
                   </span>
-                  <span className="text-lg text-neutral-900">$ {0}</span>
+                  <span className="text-lg text-neutral-900">
+                    $ {SHIPPING_COST}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-base uppercase text-neutral-900/50">
                     Vat (included)
                   </span>
-                  <span className="text-lg text-neutral-900">$ {0}</span>
+                  <span className="text-lg text-neutral-900">
+                    $ {getFormattedPrice(calculateVatAmount())}
+                  </span>
                 </div>
                 <div className="mt-[1rem] flex justify-between">
                   <span className="text-base uppercase text-neutral-900/50">
                     Grand total
                   </span>
-                  <span className="text-lg text-orange">$ {0}</span>
+                  <span className="text-lg text-orange">
+                    $ {getFormattedPrice(calculateGrandTotal())}
+                  </span>
                 </div>
               </div>
             )}

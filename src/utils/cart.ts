@@ -25,7 +25,16 @@ export const getCartFromLocalStorage = () => {
 };
 
 export const getFormattedPrice = (price: number) => {
-  return price.toLocaleString("en-US");
+  const roundedPrice = parseFloat(price.toFixed(2));
+
+  if (price % 1 !== 0) {
+    return roundedPrice.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  } else {
+    return price.toLocaleString("en-US");
+  }
 };
 
 export const getShortenedProductName = (name: string) => {
