@@ -12,6 +12,6 @@
   }
 
   body {
-    @apply min-h-full;
+    @apply min-h-full bg-neutral-300;
   }
 }
