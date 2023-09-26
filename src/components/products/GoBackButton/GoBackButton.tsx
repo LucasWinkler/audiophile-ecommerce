@@ -9,7 +9,7 @@ export default function GoBackButton({ children }: GoBackButtonProps) {
 
   return (
     <button
-      className="text-base text-neutral-900/50 underline-offset-4 hover:underline focus:underline"
+      className="text-base text-neutral-900/50 hover:text-orange focus:text-orange"
       onClick={() => {
         router.back();
       }}
