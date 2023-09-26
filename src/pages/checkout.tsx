@@ -26,7 +26,7 @@ export default function Checkout() {
   };
 
   const calculateGrandTotal = () => {
-    return cartTotal + SHIPPING_COST + calculateVatAmount();
+    return cartTotal + SHIPPING_COST;
   };
 
   useEffect(() => {
