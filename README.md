@@ -36,7 +36,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: Work in progress
+- Solution URL: [https://www.frontendmentor.io/solutions/audiophile-ecommerce-react-nextjs-local-storage-currently-R_80_swwrg](https://www.frontendmentor.io/solutions/audiophile-ecommerce-react-nextjs-local-storage-currently-R_80_swwrg)
 - Live Site URL: [https://fem-audiophile-ecommerce.vercel.app/](https://fem-audiophile-ecommerce.vercel.app/)
 
 ## My process
@@ -45,10 +45,14 @@ Users should be able to:
 
 - Semantic HTML5 markup
 - Flexbox
+- Grid
 - Mobile-first workflow
+- LocalStorage for cart (may be replaced with a CMS or a database in the future)
 - [React](https://reactjs.org/) - JS library
 - [Next.js](https://nextjs.org/) - React framework
 - [TailwindCSS](https://tailwindcss.com/) - For styling
+- [zod](https://zod.dev/) - For form validation
+- [react-hook-form](https://react-hook-form.com/) - For form handling
 
 ## Author
 
