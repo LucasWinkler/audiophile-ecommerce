@@ -119,7 +119,6 @@ export default function Product({
     }
   };
 
-  // Reset quantity to 1 when changing route
   useEffect(() => setProductQuantity(1), [dynamicRoute]);
 
   return (
