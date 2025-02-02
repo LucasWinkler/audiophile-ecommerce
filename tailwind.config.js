@@ -32,6 +32,8 @@ export default {
         light: "#FBAF85",
         DEFAULT: "#D87D4A",
       },
+      'form-border': '#CFCFCF',
+      'form-error': '#CD2C2C',
     },
     fontSize: {
       xs: [

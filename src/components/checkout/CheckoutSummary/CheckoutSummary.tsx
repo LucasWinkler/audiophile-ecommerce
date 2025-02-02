@@ -1,27 +1,28 @@
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
-import Button from '@/components/common/Button/Button'
 import { CartProduct } from '@/types'
 import { getFormattedPrice, getShortenedProductName } from '@/utils/cart'
+import { SubmitButton } from '../SubmitButton/SubmitButton'
 
 interface CheckoutSummaryProps {
   cart: CartProduct[]
   cartTotal: number
-  onContinue: () => void
+  shippingCost: number
+  vatAmount: number
+  grandTotal: number
+  formId: string
+  paymentMethod: string
 }
 
-export function CheckoutSummary({ cart, cartTotal, onContinue }: CheckoutSummaryProps) {
-  const SHIPPING_COST = 50
-  const VAT_RATE = 0.2
-
-  const calculateVatAmount = () => {
-    return (cartTotal * VAT_RATE) / 100
-  }
-
-  const calculateGrandTotal = () => {
-    return cartTotal + SHIPPING_COST
-  }
-
+export function CheckoutSummary({ 
+  cart, 
+  cartTotal, 
+  shippingCost,
+  vatAmount,
+  grandTotal,
+  formId,
+  paymentMethod 
+}: CheckoutSummaryProps) {
   return (
     <div className="w-full overflow-hidden rounded-lg bg-neutral-100 p-[1.5rem] lg:p-[2rem] xl:basis-1/3">
       <h2 className="text-lg font-bold uppercase text-neutral-900">Summary</h2>
@@ -57,21 +58,25 @@ export function CheckoutSummary({ cart, cartTotal, onContinue }: CheckoutSummary
           </div>
           <div className="flex justify-between">
             <span className="text-base uppercase text-neutral-900/50">Shipping</span>
-            <span className="text-lg text-neutral-900">$ {SHIPPING_COST}</span>
+            <span className="text-lg text-neutral-900">$ {shippingCost}</span>
           </div>
           <div className="flex justify-between">
             <span className="text-base uppercase text-neutral-900/50">Vat (included)</span>
-            <span className="text-lg text-neutral-900">$ {getFormattedPrice(calculateVatAmount())}</span>
+            <span className="text-lg text-neutral-900">$ {getFormattedPrice(vatAmount)}</span>
           </div>
           <div className="mt-[1rem] flex justify-between">
             <span className="text-base uppercase text-neutral-900/50">Grand total</span>
-            <span className="text-lg text-orange">$ {getFormattedPrice(calculateGrandTotal())}</span>
+            <span className="text-lg text-orange">$ {getFormattedPrice(grandTotal)}</span>
           </div>
         </div>
       )}
-      <Button className="mt-[2rem]" intent="primary" fullWidth onClick={onContinue}>
-        Continue & pay
-      </Button>
+      <SubmitButton 
+        className="mt-[2rem]"
+        fullWidth
+        form={formId}
+      >
+        {paymentMethod === 'Cash on Delivery' ? 'Continue' : 'Continue & Pay'}
+      </SubmitButton>
     </div>
   )
 } 
