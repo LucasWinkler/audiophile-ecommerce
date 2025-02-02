@@ -60,7 +60,7 @@ export default function Checkout() {
     calculateCartTotal();
   }, [cart]);
 
-  if (!cart) {
+  if (!cart || cart.length === 0) {
     return (
       <main className="pb-[7.5rem] pt-[calc(6.875rem+var(--navigation-height))] md:pb-[6rem] xl:pb-[10rem] xl:pt-[calc(8rem+var(--navigation-height))]">
         <Container className="text-center">
@@ -88,6 +88,7 @@ export default function Checkout() {
             <h1 className="pt-[0.35rem] text-2xl font-bold uppercase text-neutral-900 lg:text-3xl">
               Checkout
             </h1>
+            <form></form>
           </div>
           <div className="w-full overflow-hidden rounded-lg bg-neutral-100 p-[1.5rem] lg:p-[2rem] xl:basis-1/3">
             <h2 className="text-lg font-bold uppercase text-neutral-900">
